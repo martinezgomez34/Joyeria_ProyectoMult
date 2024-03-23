@@ -1,9 +1,9 @@
-package com.eduard034.joyeria_proyectomult;
+package com.eduard034.joyeria_proyectomult.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class AppController {
     @FXML
     private Label welcomeText;
 
