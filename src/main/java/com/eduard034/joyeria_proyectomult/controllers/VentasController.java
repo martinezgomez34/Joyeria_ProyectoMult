@@ -28,12 +28,12 @@ public class VentasController {
 
     @FXML
     void onClickAgregarVentasButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("AgregarV.fxml","Agregar Ventas");
     }
 
     @FXML
     void onClickEliminarVentasButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("EliminarV.fxml","Eliminar Ventas");
     }
 
     @FXML
@@ -43,7 +43,7 @@ public class VentasController {
 
     @FXML
     void onClickModificarVentasButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("BuscarV.fxml","Buscar Ventas");
     }
 
     @FXML

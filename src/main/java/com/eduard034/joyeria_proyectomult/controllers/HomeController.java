@@ -45,9 +45,7 @@ public class HomeController {
     }
 
     @FXML
-    void onClickExitHome(MouseEvent event) {
-        Platform.exit();
-    }
+    void onClickExitHome(MouseEvent event) { JoyeriaApp.getStageView().close();}
 
     @FXML
     void onClickVentasButton(MouseEvent event) {

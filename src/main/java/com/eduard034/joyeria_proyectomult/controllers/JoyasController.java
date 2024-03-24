@@ -28,12 +28,12 @@ public class JoyasController {
 
     @FXML
     void onClickAgregarJoyasButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("AgregarJ.fxml","Agregar joyas");
     }
 
     @FXML
     void onClickEliminarJoyasButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("EliminarJ.fxml","Eliminar joyas");
     }
 
     @FXML
@@ -43,7 +43,7 @@ public class JoyasController {
 
     @FXML
     void onClickModificarJoyasButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("BuscarJ.fxml","Buscar joyas");
     }
 
     @FXML

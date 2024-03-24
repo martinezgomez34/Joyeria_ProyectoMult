@@ -29,12 +29,12 @@ public class GastosController {
 
     @FXML
     void onClickAgregarGastosButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("AgregarG.fxml","Agregar Gastos");
     }
 
     @FXML
     void onClickEliminarGastosButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("EliminarG.fxml","Eliminar Gastos");
     }
 
     @FXML
@@ -44,7 +44,7 @@ public class GastosController {
 
     @FXML
     void onClickModificarGastosButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("BuscarG.fxml","Buscar Gastos");
     }
 
     @FXML

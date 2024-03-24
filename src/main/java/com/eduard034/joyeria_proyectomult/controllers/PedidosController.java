@@ -28,22 +28,22 @@ public class PedidosController {
 
     @FXML
     void onClickAgregarPedidosButton(MouseEvent event) {
-
+    JoyeriaApp.newStage("AgregarP.fxml","AgregarPedidos");
     }
 
     @FXML
     void onClickEliminarPedidosButton(MouseEvent event) {
-
+    JoyeriaApp.newStage("EliminarP.fxml","EliminarPedidos");
     }
 
     @FXML
     void onClickExitPedidosButton(MouseEvent event) {
-        JoyeriaApp.getStageView().close();
+        JoyeriaApp.newStage("home.fxml","home");
     }
 
     @FXML
     void onClickModificarPedidosButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("BuscarP.fxml","Buscar Pedidos Para Modificar");
     }
 
     @FXML
