@@ -1,4 +1,4 @@
-package com.eduard034.joyeria_proyectomult.controllers;
+package com.eduard034.joyeria_proyectomult.controllers.menus;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -38,7 +38,7 @@ public class JoyasController {
 
     @FXML
     void onClickExitJoyasButton(MouseEvent event) {
-        JoyeriaApp.getStageView().close();
+        JoyeriaApp.newStage("home.fxml","Menu");
     }
 
     @FXML

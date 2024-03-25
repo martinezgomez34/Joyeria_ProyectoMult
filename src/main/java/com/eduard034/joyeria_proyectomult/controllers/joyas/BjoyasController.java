@@ -1,4 +1,4 @@
-package com.eduard034.joyeria_proyectomult.controllers;
+package com.eduard034.joyeria_proyectomult.controllers.joyas;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,12 +28,12 @@ public class BjoyasController {
 
     @FXML
     void bttnbuscarj(MouseEvent event) {
-        JoyeriaApp.newStage("ModificarJ.fxml","Modificar Joyas");
+        JoyeriaApp.newStage("ModificarJ.fxml","Modificar joyas");
     }
 
     @FXML
     void bttnsalirbj(MouseEvent event) {
-    JoyeriaApp.getStageView().close();
+        JoyeriaApp.newStage("joyas.fxml","Menu de joyas");
     }
 
     @FXML

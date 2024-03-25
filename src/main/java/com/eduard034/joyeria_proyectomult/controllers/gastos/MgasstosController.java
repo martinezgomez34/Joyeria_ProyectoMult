@@ -1,4 +1,4 @@
-package com.eduard034.joyeria_proyectomult.controllers;
+package com.eduard034.joyeria_proyectomult.controllers.gastos;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,7 +34,7 @@ public class MgasstosController {
 
     @FXML
     void bttnmodificarg(MouseEvent event) {
-        JoyeriaApp.newStage("gatos.fxml","Gastos");
+        JoyeriaApp.newStage("gastos.fxml","Gastos");
     }
 
     @FXML

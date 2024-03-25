@@ -1,4 +1,4 @@
-package com.eduard034.joyeria_proyectomult.controllers;
+package com.eduard034.joyeria_proyectomult.controllers.pedidos;
 
 import java.net.URL;
 import java.util.ResourceBundle;
