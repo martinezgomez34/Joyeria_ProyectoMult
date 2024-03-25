@@ -1,4 +1,4 @@
-package com.eduard034.joyeria_proyectomult.controllers;
+package com.eduard034.joyeria_proyectomult.controllers.menus;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,22 +28,22 @@ public class JoyasController {
 
     @FXML
     void onClickAgregarJoyasButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("AgregarJ.fxml","Agregar joyas");
     }
 
     @FXML
     void onClickEliminarJoyasButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("EliminarJ.fxml","Eliminar joyas");
     }
 
     @FXML
     void onClickExitJoyasButton(MouseEvent event) {
-        JoyeriaApp.getStageView().close();
+        JoyeriaApp.newStage("home.fxml","Menu");
     }
 
     @FXML
     void onClickModificarJoyasButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("BuscarJ.fxml","Buscar joyas");
     }
 
     @FXML

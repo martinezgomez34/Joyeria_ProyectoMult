@@ -1,4 +1,4 @@
-package com.eduard034.joyeria_proyectomult.controllers;
+package com.eduard034.joyeria_proyectomult.controllers.menus;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -29,22 +29,22 @@ public class GastosController {
 
     @FXML
     void onClickAgregarGastosButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("AgregarG.fxml","Agregar Gastos");
     }
 
     @FXML
     void onClickEliminarGastosButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("EliminarG.fxml","Eliminar Gastos");
     }
 
     @FXML
     void onClickExitGastosButton(MouseEvent event) {
-        JoyeriaApp.getStageView().close();
+        JoyeriaApp.newStage("home.fxml","Menu");
     }
 
     @FXML
     void onClickModificarGastosButton(MouseEvent event) {
-
+        JoyeriaApp.newStage("BuscarG.fxml","Buscar Gastos");
     }
 
     @FXML

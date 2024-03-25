@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eduard034.joyeria_proyectomult.controllers.joyas.EjoyasController">
+   <children>
+      <Text fill="WHITE" layoutX="582.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese el ID a eliminar">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="Beliminarp" layoutX="582.0" layoutY="184.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese el ID de la joya a eliminar" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Mjoyaaeliminar" layoutX="499.0" layoutY="260.0" prefHeight="481.0" prefWidth="919.0" style="-fx-background-color: #313131; -fx-border-color: white; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 0.2;" />
+      <Button fx:id="bttneliminarj" layoutX="869.0" layoutY="775.0" mnemonicParsing="false" onMouseClicked="#bttneliminarv" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: A13030; -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 0.2;" text="Eliminar" textFill="#f4f4f4">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="bttnsalirej" layoutX="907.0" layoutY="847.0" mnemonicParsing="false" onMouseClicked="#bttnsalirev" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #404040; -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 0.2;" text="Salir" textFill="#f4f4f4">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

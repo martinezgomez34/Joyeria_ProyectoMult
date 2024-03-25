@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClickModificarGastosButton" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eduard034.joyeria_proyectomult.controllers.GastosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClickModificarGastosButton" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eduard034.joyeria_proyectomult.controllers.menus.GastosController">
    <children>
       <Text fill="WHITE" layoutX="875.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gastos">
          <font>

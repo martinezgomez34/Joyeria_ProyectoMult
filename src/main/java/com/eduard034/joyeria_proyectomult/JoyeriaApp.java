@@ -18,7 +18,7 @@ public class JoyeriaApp extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
         stageRoot = stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(JoyeriaApp.class.getResource("home.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(JoyeriaApp.class.getResource("InicioSecion.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setTitle("NameApplication - Home");
