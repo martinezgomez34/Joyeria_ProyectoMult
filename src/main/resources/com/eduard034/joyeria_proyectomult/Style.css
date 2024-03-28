@@ -1,0 +1,6 @@
+Textfield-ingresarpswd{
+-fx-color-label-visible: white;
+}
+Textfield:focused{
+    -fx-background-color: white;
+}
