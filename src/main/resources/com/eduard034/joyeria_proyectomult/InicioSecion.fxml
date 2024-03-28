@@ -15,7 +15,10 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="ingresarpswd" layoutX="608.0" layoutY="577.0" prefHeight="26.0" prefWidth="702.0" style="-fx-background-color: #313131; -fx-background-radius: 5em;" />
+      <TextField fx:id="ingresarpswd" layoutX="608.0" layoutY="577.0" prefHeight="26.0" prefWidth="702.0" style="-fx-background-color: #313131; -fx-background-radius: 5em;">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
       <Text fill="WHITE" layoutX="211.0" layoutY="606.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cambiar PIN:">
          <font>
             <Font name="Arial Bold" size="18.0" />

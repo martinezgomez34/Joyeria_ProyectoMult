@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -37,6 +38,13 @@ public class LoginController {
 
     @FXML
     private TextField nuevapswd;
+    public String passwordpred (){
+        int pass = 4321;
+        return Integer.toString(pass);
+    }
+    public String Ingresarusuario(){
+        return ingresarpswd.getText();
+    }
 
     @FXML
     void bttnchangepswd(MouseEvent event) {
@@ -44,7 +52,14 @@ public class LoginController {
 
     @FXML
     void bttniniciar(MouseEvent event) {
-        JoyeriaApp.newStage("home.fxml", "home");
+        if (Ingresarusuario().equals(passwordpred())){
+            JoyeriaApp.newStage("home.fxml", "home");
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error");
+            alert.setContentText("Su contraseña es incorrecta");
+            alert.showAndWait();
+        }
     }
     @FXML
     void bttnexit(MouseEvent event) {
