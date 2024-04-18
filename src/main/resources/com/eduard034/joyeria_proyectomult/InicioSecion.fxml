@@ -15,7 +15,7 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="ingresarpswd" layoutX="608.0" layoutY="577.0" prefHeight="26.0" prefWidth="702.0" style="-fx-background-color: #313131; -fx-background-radius: 5em;" />
+      <TextField fx:id="ingresarpswd" layoutX="608.0" layoutY="577.0" prefHeight="26.0" prefWidth="702.0" style="-fx-background-color: white; -fx-background-radius: 5em;" />
       <Text fill="WHITE" layoutX="211.0" layoutY="606.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cambiar PIN:">
          <font>
             <Font name="Arial Bold" size="18.0" />
@@ -31,8 +31,8 @@
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="actualpswd" layoutX="211.0" layoutY="688.0" prefHeight="26.0" prefWidth="207.0" style="-fx-background-color: #313131; -fx-background-radius: 5em;" />
-      <TextField fx:id="nuevapswd" layoutX="211.0" layoutY="807.0" prefHeight="26.0" prefWidth="207.0" style="-fx-background-color: #313131; -fx-background-radius: 5em;" />
+      <TextField fx:id="actualpswd" layoutX="211.0" layoutY="688.0" prefHeight="26.0" prefWidth="207.0" style="-fx-background-color: white; -fx-background-radius: 5em;" />
+      <TextField fx:id="nuevapswd" layoutX="211.0" layoutY="807.0" prefHeight="26.0" prefWidth="207.0" style="-fx-background-color: white; -fx-background-radius: 5em;" />
       <Button fx:id="bttniniciar" layoutX="867.0" layoutY="646.0" mnemonicParsing="false" onMouseClicked="#bttniniciar" prefHeight="59.0" prefWidth="183.0" style="-fx-background-color: #F6B553; -fx-background-radius: 30;" text="Aceptar" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="24.0" />
