@@ -1,9 +1,11 @@
 package com.eduard034.joyeria_proyectomult.controllers.joyas;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
+import com.eduard034.joyeria_proyectomult.models.Joya;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -34,7 +36,14 @@ public class AjoyasController {
 
     @FXML
     void bttnagregarj(MouseEvent event) {
-
+        Random generar = new Random();
+        int id = generar.nextInt(1000);
+        String nombre = Anombrej.getText();
+        String cantidad = Acantidadj.getText();
+        String descripcion = Adescripcionj.getText();
+        Joya joya = new Joya(id,nombre,cantidad,descripcion);
+        JoyeriaApp.getData().setListaJoya(joya);
+        JoyeriaApp.getStageView().close();
     }
 
     @FXML
@@ -44,11 +53,6 @@ public class AjoyasController {
 
     @FXML
     void initialize() {
-        assert Acantidadj != null : "fx:id=\"Acantidadj\" was not injected: check your FXML file 'AgregarJ.fxml'.";
-        assert Adescripcionj != null : "fx:id=\"Adescripcionj\" was not injected: check your FXML file 'AgregarJ.fxml'.";
-        assert Anombrej != null : "fx:id=\"Anombrej\" was not injected: check your FXML file 'AgregarJ.fxml'.";
-        assert bttnagregarj != null : "fx:id=\"bttnagregarj\" was not injected: check your FXML file 'AgregarJ.fxml'.";
-        assert bttnsaliraj != null : "fx:id=\"bttnsaliraj\" was not injected: check your FXML file 'AgregarJ.fxml'.";
 
     }
 

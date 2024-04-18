@@ -3,9 +3,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
+import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.Joya;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 public class JoyasController {
     @FXML
@@ -18,13 +23,29 @@ public class JoyasController {
     private Button agregarJoyasButton;
 
     @FXML
+    private TableColumn<Joya, String> cantidadColumnJ;
+
+    @FXML
+    private TableColumn<Joya, String> descripcionColumnJ;
+
+    @FXML
     private Button eliminarJoyasButton;
 
     @FXML
     private Button exitJoyasButton;
 
     @FXML
+    private TableColumn<Joya, String> idColumnJ;
+
+    @FXML
+    private TableView<Joya> listaJoyas;
+
+    @FXML
     private Button modificarJoyasButton;
+
+    @FXML
+    private TableColumn<Joya, String> nombreColumnJ;
+
 
     @FXML
     void onClickAgregarJoyasButton(MouseEvent event) {
@@ -45,14 +66,19 @@ public class JoyasController {
     void onClickModificarJoyasButton(MouseEvent event) {
         JoyeriaApp.newStage("BuscarJ.fxml","Buscar joyas");
     }
+    @FXML
+    void onClickVerLIstaJ(MouseEvent event) {
+        Database date = JoyeriaApp.getData();
+        listaJoyas.getItems().clear();
+        listaJoyas.getItems().addAll(date.getListaJoya());
+    }
 
     @FXML
     void initialize() {
-        assert agregarJoyasButton != null : "fx:id=\"agregarJoyasButton\" was not injected: check your FXML file 'joyas.fxml'.";
-        assert eliminarJoyasButton != null : "fx:id=\"eliminarJoyasButton\" was not injected: check your FXML file 'joyas.fxml'.";
-        assert exitJoyasButton != null : "fx:id=\"exitJoyasButton\" was not injected: check your FXML file 'joyas.fxml'.";
-        assert modificarJoyasButton != null : "fx:id=\"modificarJoyasButton\" was not injected: check your FXML file 'joyas.fxml'.";
-
+        idColumnJ.setCellValueFactory(new PropertyValueFactory<>("idJoya"));
+        nombreColumnJ.setCellValueFactory(new PropertyValueFactory<>("nombreJoya"));
+        cantidadColumnJ.setCellValueFactory(new PropertyValueFactory<>("cantidadDJoya"));
+        descripcionColumnJ.setCellValueFactory(new PropertyValueFactory<>("descripcionDJoya"));
     }
 
 }

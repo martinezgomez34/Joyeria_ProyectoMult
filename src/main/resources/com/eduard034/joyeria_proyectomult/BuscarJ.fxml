@@ -13,7 +13,7 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="Bjoyasmj" layoutX="570.0" layoutY="425.0" prefHeight="34.0" prefWidth="733.0" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Bjoyasmj" layoutX="570.0" layoutY="425.0" prefHeight="34.0" prefWidth="733.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Button fx:id="bttnbuscarj" layoutX="847.0" layoutY="542.0" mnemonicParsing="false" onMouseClicked="#bttnbuscarj" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: #34B4D0; -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 0.2;" text="Modificar" textFill="#f4f4f4">
          <font>
             <Font name="Arial Bold" size="14.0" />

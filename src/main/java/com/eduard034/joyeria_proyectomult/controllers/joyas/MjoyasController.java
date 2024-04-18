@@ -4,12 +4,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
+import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.Gasto;
+import com.eduard034.joyeria_proyectomult.models.Joya;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class MjoyasController {
+
 
     @FXML
     private ResourceBundle resources;
@@ -27,23 +31,72 @@ public class MjoyasController {
     private TextField Anombremj;
 
     @FXML
-    private TextField Mjoyasmj;
-
-    @FXML
     private Button bttnmodificarj;
 
     @FXML
+    private TableColumn<Joya, String> cantidadColumJ;
+
+    @FXML
+    private TableColumn<Joya, String> descripcionColumnJ;
+
+    @FXML
+    private TableColumn<Joya, String> idColumnJ;
+
+    @FXML
+    private TableColumn<Joya, String> nombreColumnJ;
+    @FXML
+    private TableView<Joya> verlistaJ;
+
+
+    @FXML
     void bttnmodificarj(MouseEvent event) {
+        Database database = JoyeriaApp.getData();
+        int id = database.getIdBusqueda();
+        boolean idModificado = true;
+        for (Joya item: JoyeriaApp.getData().getListaJoya()) {
+            if (item.getIdJoya()==id) {
+                idModificado = false;
+                String nombre = Anombremj.getText();
+                String cantidad = Acantidadmj.getText();
+                String descripcion = Adescripcionmj.getText();
+                item.setNombreJoya(nombre);
+                item.setCantidadDJoya(cantidad);
+                item.setDescripcionDJoya(descripcion);
+                showAlert(Alert.AlertType.INFORMATION, "Modificado", "Se modifico correctamente.");
+            }
+        }
+        if (idModificado) {
+            showAlert(Alert.AlertType.ERROR, "Error", "No se encontró el ID.");
+        }
         JoyeriaApp.newStage("joyas.fxml","Joyas");
+
+    }
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    void onClickVerListaJ(MouseEvent event) {
+        Database date = JoyeriaApp.getData();
+        int id = date.getIdBusqueda();
+        verlistaJ.getItems().clear();
+        for (Joya item: JoyeriaApp.getData().getListaJoya()) {
+            if (item.getIdJoya()==id) {
+                verlistaJ.getItems().addAll(item);
+            }
+        }
     }
 
     @FXML
     void initialize() {
-        assert Acantidadmj != null : "fx:id=\"Acantidadmj\" was not injected: check your FXML file 'ModificarJ.fxml'.";
-        assert Adescripcionmj != null : "fx:id=\"Adescripcionmj\" was not injected: check your FXML file 'ModificarJ.fxml'.";
-        assert Anombremj != null : "fx:id=\"Anombremj\" was not injected: check your FXML file 'ModificarJ.fxml'.";
-        assert Mjoyasmj != null : "fx:id=\"Mjoyasmj\" was not injected: check your FXML file 'ModificarJ.fxml'.";
-        assert bttnmodificarj != null : "fx:id=\"bttnmodificarj\" was not injected: check your FXML file 'ModificarJ.fxml'.";
+        idColumnJ.setCellValueFactory(new PropertyValueFactory<>("idJoya"));
+        nombreColumnJ.setCellValueFactory(new PropertyValueFactory<>("nombreJoya"));
+        cantidadColumJ.setCellValueFactory(new PropertyValueFactory<>("cantidadDJoya"));
+        descripcionColumnJ.setCellValueFactory(new PropertyValueFactory<>("descripcionDJoya"));
 
     }
 
