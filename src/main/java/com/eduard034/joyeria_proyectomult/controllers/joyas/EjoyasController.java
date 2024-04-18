@@ -52,7 +52,7 @@ public class EjoyasController {
         for (Joya item: JoyeriaApp.getData().getListaJoya()) {
             if (item.getIdJoya()==ID) {
                 idElimidado = false;
-                JoyeriaApp.getData().getListaGastos().remove(item);
+                JoyeriaApp.getData().getListaJoya().remove(item);
                 showAlert(Alert.AlertType.INFORMATION, "Eliminado", "Se eliminó correctamente.");
             }
         }

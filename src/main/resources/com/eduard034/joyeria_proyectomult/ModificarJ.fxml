@@ -38,7 +38,7 @@
          </font>
       </Text>
       <TextField fx:id="Adescripcionmj" layoutX="987.0" layoutY="522.0" prefHeight="188.0" prefWidth="387.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: white; -fx-border-width: 0.2;" />
-      <TableView layoutX="563.0" layoutY="179.0" prefHeight="242.0" prefWidth="746.0">
+      <TableView fx:id="verlistaJ" layoutX="563.0" layoutY="179.0" prefHeight="242.0" prefWidth="746.0">
         <columns>
           <TableColumn fx:id="idColumnJ" prefWidth="89.0" text="ID" />
           <TableColumn fx:id="nombreColumnJ" prefWidth="209.0" text="Nombre" />

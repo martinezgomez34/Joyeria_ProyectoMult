@@ -46,7 +46,17 @@ public class MjoyasController {
     private TableColumn<Joya, String> nombreColumnJ;
     @FXML
     private TableView<Joya> verlistaJ;
-
+    @FXML
+    void onClickVerListaJ(MouseEvent event) {
+        Database date = JoyeriaApp.getData();
+        int id = date.getIdBusqueda();
+        verlistaJ.getItems().clear();
+        for (Joya item: JoyeriaApp.getData().getListaJoya()) {
+            if (item.getIdJoya()==id) {
+                verlistaJ.getItems().addAll(item);
+            }
+        }
+    }
 
     @FXML
     void bttnmodificarj(MouseEvent event) {
@@ -77,18 +87,6 @@ public class MjoyasController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-    @FXML
-    void onClickVerListaJ(MouseEvent event) {
-        Database date = JoyeriaApp.getData();
-        int id = date.getIdBusqueda();
-        verlistaJ.getItems().clear();
-        for (Joya item: JoyeriaApp.getData().getListaJoya()) {
-            if (item.getIdJoya()==id) {
-                verlistaJ.getItems().addAll(item);
-            }
-        }
     }
 
     @FXML
