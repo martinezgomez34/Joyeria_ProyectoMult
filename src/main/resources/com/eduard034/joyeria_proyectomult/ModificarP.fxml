@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -19,7 +21,6 @@
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="Mpedidospm" layoutX="563.0" layoutY="179.0" prefHeight="242.0" prefWidth="746.0" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
       <Text fill="WHITE" layoutX="563.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datos Actuales:">
          <font>
             <Font name="Arial Bold" size="18.0" />
@@ -55,5 +56,21 @@
          </font>
       </Text>
       <TextField fx:id="Ahoramp" layoutX="987.0" layoutY="674.0" prefHeight="20.0" prefWidth="407.0" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TableView fx:id="Mverpedidos" layoutX="622.0" layoutY="184.0" prefHeight="200.0" prefWidth="523.0">
+        <columns>
+          <TableColumn fx:id="idmod" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="nommod" prefWidth="75.0" text="Nombre" />
+            <TableColumn fx:id="contacmod" prefWidth="75.0" text="Contacto" />
+            <TableColumn fx:id="tipomod" prefWidth="75.0" text="tipo" />
+            <TableColumn fx:id="cantidadmod" prefWidth="75.0" text="Cantidad" />
+            <TableColumn fx:id="fechamod" prefWidth="75.0" text="Fecha" />
+            <TableColumn fx:id="horamod" prefWidth="75.0" text="Hora" />
+        </columns>
+      </TableView>
+      <Button fx:id="Bactu" layoutX="888.0" layoutY="836.0" mnemonicParsing="false" onMouseClicked="#Bactu" prefHeight="34.0" prefWidth="96.0" style="-fx-background-color: #313131; -fx-background-radius: 5em; -fx-border-color: white; -fx-border-radius: 5em;" text="Actualizar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

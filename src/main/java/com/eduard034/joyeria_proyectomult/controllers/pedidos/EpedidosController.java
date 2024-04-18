@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
+import com.eduard034.joyeria_proyectomult.models.Database;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -31,7 +32,13 @@ public class EpedidosController {
 
     @FXML
     void bttneliminarp(MouseEvent event) {
-
+    int ide = Integer.parseInt(bttneliminarp.getText());
+        Database date = JoyeriaApp.getData();
+        if (date.getIdbP() == ide){
+            if (date.getListapedidos().contains(ide)){
+                date.getListapedidos().remove(ide);
+            }
+        }
     }
 
     @FXML

@@ -3,9 +3,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
-import javafx.application.Platform;
+import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.Pedid0s;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 public class PedidosController {
     @FXML
@@ -13,6 +17,33 @@ public class PedidosController {
 
     @FXML
     private URL location;
+    @FXML
+    private Button BActu;
+    @FXML
+    private TableColumn<Pedid0s, String> MosCant;
+
+    @FXML
+    private TableColumn<Pedid0s, Integer> MosContact;
+
+    @FXML
+    private TableColumn<Pedid0s,Integer> MosID;
+
+    @FXML
+    private TableColumn<Pedid0s, String> MosNom;
+
+    @FXML
+    private TableColumn<Pedid0s, String> Mosfecha;
+
+    @FXML
+    private TableColumn<Pedid0s, String> Moshora;
+
+    @FXML
+    private TableColumn<Pedid0s, Integer> Mostipo;
+    @FXML
+    private TableView<Pedid0s> Mpedidos;
+    @FXML
+    private Button Bactu;
+
 
     @FXML
     private Button agregarPedidosButton;
@@ -25,6 +56,12 @@ public class PedidosController {
 
     @FXML
     private Button modificarPedidosButton;
+    @FXML
+    void BActu(MouseEvent event) {
+        Database date = JoyeriaApp.getData();
+        Mpedidos.getItems().clear();
+        Mpedidos.getItems().addAll(date.getListapedidos());
+    }
 
     @FXML
     void onClickAgregarPedidosButton(MouseEvent event) {
@@ -48,11 +85,13 @@ public class PedidosController {
 
     @FXML
     void initialize() {
-        assert agregarPedidosButton != null : "fx:id=\"agregarPedidosButton\" was not injected: check your FXML file 'pedidos.fxml'.";
-        assert eliminarPedidosButton != null : "fx:id=\"eliminarPedidosButton\" was not injected: check your FXML file 'pedidos.fxml'.";
-        assert exitPedidosButton != null : "fx:id=\"exitPedidosButton\" was not injected: check your FXML file 'pedidos.fxml'.";
-        assert modificarPedidosButton != null : "fx:id=\"modificarPedidosButton\" was not injected: check your FXML file 'pedidos.fxml'.";
-
+        MosID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        MosNom.setCellValueFactory(new PropertyValueFactory<>("nombrec"));
+        MosContact.setCellValueFactory(new PropertyValueFactory<>("contactoc"));
+        Mostipo.setCellValueFactory(new PropertyValueFactory<>("tipoj"));
+        MosCant.setCellValueFactory(new PropertyValueFactory<>("cantidadj"));
+        Mosfecha.setCellValueFactory(new PropertyValueFactory<>("fechap"));
+        Moshora.setCellValueFactory(new PropertyValueFactory<>("horap"));
     }
 
 }
