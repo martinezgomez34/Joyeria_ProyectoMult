@@ -13,8 +13,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableView;
 
 public class GastosController {
-    @FXML
-    private Button actualizar;
 
     @FXML
     private ResourceBundle resources;
@@ -42,7 +40,6 @@ public class GastosController {
 
     @FXML
     private TableColumn<Gasto, Integer> idColumn;
-
 
     @FXML
     private TableView<Gasto> verGasto;

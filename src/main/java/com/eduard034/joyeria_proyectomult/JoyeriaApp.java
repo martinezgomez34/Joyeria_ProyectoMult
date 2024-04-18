@@ -18,6 +18,7 @@ public class JoyeriaApp extends javafx.application.Application {
     private static Stage stageRoot;
     private static Database data = new Database();
     public static Database getData(){return data;}
+
     @Override
     public void start(Stage stage) throws IOException {
         stageRoot = stage;
