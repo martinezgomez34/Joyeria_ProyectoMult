@@ -34,12 +34,12 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <TableView fx:id="verGasto" layoutX="399.0" layoutY="169.0" prefHeight="442.0" prefWidth="1122.0" style="-fx-background-color: white;">
+      <TableView fx:id="verGasto" layoutX="399.0" layoutY="169.0" prefHeight="442.0" prefWidth="1122.0">
          <columns>
-            <TableColumn fx:id="idColumn" prefWidth="107.0" style="-fx-background-color: white;" text="ID" />
-            <TableColumn fx:id="descripcionColumn" minWidth="0.0" prefWidth="769.0" style="-fx-background-color: white;" text="Descripcion" />
-            <TableColumn fx:id="cantidadColumn" prefWidth="82.0" style="-fx-background-color: white;" text="Cantidad" />
-            <TableColumn fx:id="fechaColumn" prefWidth="163.0" style="-fx-background-color: white;" text="Fecha" />
+            <TableColumn fx:id="idColumn" prefWidth="107.0" text="ID" />
+            <TableColumn fx:id="descripcionColumn" minWidth="0.0" prefWidth="769.0" text="Descripcion" />
+            <TableColumn fx:id="cantidadColumn" prefWidth="82.0" text="Cantidad" />
+            <TableColumn fx:id="fechaColumn" prefWidth="163.0" text="Fecha" />
          </columns>
       </TableView>
    </children>

@@ -67,7 +67,7 @@ public class GastosController {
 
     @FXML
     void onClickModificarGastosButton(MouseEvent event) {
-        JoyeriaApp.newStage("ModificarG.fxml","ModificarGastos");
+        JoyeriaApp.newStage("BuscarG.fxml","ModificarGastos");
     }
 
     @FXML

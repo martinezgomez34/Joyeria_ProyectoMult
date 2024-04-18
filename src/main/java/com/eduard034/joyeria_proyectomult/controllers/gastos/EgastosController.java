@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import com.eduard034.joyeria_proyectomult.models.Database;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
 import com.eduard034.joyeria_proyectomult.models.Gasto;
@@ -34,19 +35,19 @@ public class EgastosController {
     private Button bttnsalireg;
 
     @FXML
-    private TableColumn<?, ?> cantidadColumnE;
+    private TableColumn<Gasto, String> cantidadColumnE;
 
     @FXML
-    private TableColumn<?, ?> descripcionColumnE;
+    private TableColumn<Gasto, String> descripcionColumnE;
 
     @FXML
-    private TableColumn<?, ?> fechaColumE;
+    private TableColumn<Gasto, String> fechaColumE;
 
     @FXML
-    private TableColumn<?, ?> idColumnE;
+    private TableColumn<Gasto, Integer> idColumnE;
 
     @FXML
-    private TableView<?> verColumna;
+    private TableView<Gasto> verColumna;
 
     @FXML
     void bttneliminarg(MouseEvent event) {
@@ -78,12 +79,17 @@ public class EgastosController {
     }
     @FXML
     void verListaGastos(MouseEvent event) {
-
+        Database date = JoyeriaApp.getData();
+        verColumna.getItems().clear();
+        verColumna.getItems().addAll(date.getListaGastos());
     }
 
     @FXML
     void initialize() {
-
+        idColumnE.setCellValueFactory(new PropertyValueFactory<>("id"));
+        descripcionColumnE.setCellValueFactory(new PropertyValueFactory<>("descripcionDGasto"));
+        cantidadColumnE.setCellValueFactory(new PropertyValueFactory<>("cantidadDGasto"));
+        fechaColumE.setCellValueFactory(new PropertyValueFactory<>("fechaDGasto"));
     }
 
 }
