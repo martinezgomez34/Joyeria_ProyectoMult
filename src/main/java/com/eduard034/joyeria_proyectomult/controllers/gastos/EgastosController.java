@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
+import com.eduard034.joyeria_proyectomult.models.Gasto;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -31,7 +32,14 @@ public class EgastosController {
 
     @FXML
     void bttneliminarg(MouseEvent event) {
-
+        int ID = Integer.parseInt(Beliminarp.getText());
+        boolean idElimidado = false;
+        for (Gasto item: JoyeriaApp.getData().getListaGastos()) {
+            if (item.getId()==ID) {
+                idElimidado = true;
+                JoyeriaApp.getData().getListaGastos().remove(item);
+            }
+        }
     }
 
     @FXML
