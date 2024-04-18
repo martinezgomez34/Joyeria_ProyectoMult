@@ -1,12 +1,16 @@
 package com.eduard034.joyeria_proyectomult.controllers.pedidos;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
 import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.Pedid0s;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -32,12 +36,26 @@ public class EpedidosController {
 
     @FXML
     void bttneliminarp(MouseEvent event) {
-    int ide = Integer.parseInt(bttneliminarp.getText());
-        Database date = JoyeriaApp.getData();
-        if (date.getIdbP() == ide){
-            if (date.getListapedidos().contains(ide)){
-                date.getListapedidos().remove(ide);
+        int ID = Integer.parseInt(Beliminarp.getText());
+        boolean idElimidado = true;
+        for (Pedid0s ver: JoyeriaApp.getData().getListapedidos()) {
+            if (ver.getId()==ID) {
+                idElimidado = false;
+                Alert alertC = new Alert(Alert.AlertType.CONFIRMATION);
+                alertC.setHeaderText("Confirmar cambio de contraseña");
+                alertC.setContentText("¿Estas seguro que quieres cambiar tu contraseña?");
+                Optional<ButtonType> result = alertC.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK){
+                    JoyeriaApp.getData().getListapedidos().remove(ver);
+                }
             }
+        }
+        if (idElimidado) {
+            Alert alerterrorp = new Alert(Alert.AlertType.ERROR);
+            alerterrorp.setHeaderText("Error al eliminar");
+            alerterrorp.setContentText("No se encontro el ID");
+            alerterrorp.showAndWait();
+
         }
     }
 

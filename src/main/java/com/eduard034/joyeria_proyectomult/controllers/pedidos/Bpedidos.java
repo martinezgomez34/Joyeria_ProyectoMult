@@ -30,19 +30,23 @@ public class Bpedidos {
 
     @FXML
     void bttnbuscarp(MouseEvent event) {
-        Database date = JoyeriaApp.getData();
-        int Idbus = Integer.parseInt(Bpedidos.getText());
-        for (Pedid0s buscar:date.getListapedidos()) {
-            if (Idbus == buscar.getId()) {
-                date.setIdbP(Idbus);
-                JoyeriaApp.newStage("ModificarP.fxml","Modificar Pedido");
+        Database data = JoyeriaApp.getData();
+        int idBusqueda = Integer.parseInt(Bpedidos.getText());
+        boolean busqueda = true;
+        for (Pedid0s ver: JoyeriaApp.getData().getListapedidos()) {
+            if (ver.getId()==idBusqueda) {
+                busqueda = false;
+                data.setIdbP(idBusqueda);
+                JoyeriaApp.newStage("ModificarG.fxml","Modificar Gastos");
             }
         }
-        Alert alerterrorp = new Alert(Alert.AlertType.ERROR);
-        alerterrorp.setHeaderText("Error de busqueda");
-        alerterrorp.setContentText("Ups... no se pudo encontrar su pedido");
-        alerterrorp.showAndWait();
+        if (busqueda) {
+            Alert alertagregar = new Alert(Alert.AlertType.INFORMATION);
+            alertagregar.setHeaderText("Confirmacion");
+            alertagregar.setContentText("Se ha agregado un nuevo pedido");
+            alertagregar.showAndWait();
 
+        }
     }
 
     @FXML

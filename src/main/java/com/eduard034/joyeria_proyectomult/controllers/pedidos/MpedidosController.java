@@ -8,10 +8,7 @@ import com.eduard034.joyeria_proyectomult.JoyeriaApp;
 import com.eduard034.joyeria_proyectomult.models.Database;
 import com.eduard034.joyeria_proyectomult.models.Pedid0s;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -65,35 +62,51 @@ public class MpedidosController {
 
     @FXML
     private TableColumn<Pedid0s,Integer> tipomod;
-
     @FXML
-    void bttnmodificarp(MouseEvent event) {
+    void actu(MouseEvent event) {
         Database date = JoyeriaApp.getData();
         int id = date.getIdbP();
-        String nombre = Anombremp.getText();
-        Integer contacto = Integer.valueOf(Acontactomp.getText());
-        Integer tipo = Integer.valueOf(Atipodejoyasmp.getText());
-        String cantidad = Acantidaddejoyasmp.getText();
-        String fecha = Afechamp.getText();
-        String hora = Ahoramp.getText();
-        Pedid0s pedidosm = new Pedid0s(id,nombre,contacto,tipo,cantidad,fecha,hora);
-        if (date.getListapedidos().contains(pedidosm)){
-            for (Pedid0s mod : date.getListapedidos()){
-                nombre = mod.getNombrec();
-                contacto = mod.getContactoc();
-                tipo = mod.getTipoj();
-                cantidad = mod.getCantidadj();
-                fecha = mod.getFechap();
-                hora = mod.getHorap();
-                JoyeriaApp.newStage("pedidos.fxml","Pedidos");
+        Mverpedidos.getItems().clear();
+        for (Pedid0s item : JoyeriaApp.getData().getListapedidos()) {
+            if (item.getId() == id) {
+                Mverpedidos.getItems().addAll(item);
             }
         }
     }
     @FXML
-    void Bactu(MouseEvent event) {
+    void bttnmodificarp(MouseEvent event) {
         Database date = JoyeriaApp.getData();
-        Mverpedidos.getItems().clear();
-        Mverpedidos.getItems().addAll(date.getListapedidos());
+        int id = date.getIdbP();
+        boolean idmod = true;
+        for (Pedid0s ver:date.getListapedidos()){
+            if(ver.getId() == id){
+                idmod = false;
+                String nombre = Anombremp.getText();
+                Integer contacto = Integer.valueOf(Acontactomp.getText());
+                Integer tipo = Integer.valueOf(Atipodejoyasmp.getText());
+                String cantidad = Acantidaddejoyasmp.getText();
+                String fecha = Afechamp.getText();
+                String hora = Ahoramp.getText();
+                ver.setNombrec(nombre);
+                ver.setContactoc(contacto);
+                ver.setTipoj(tipo);
+                ver.setCantidadj(cantidad);
+                ver.setFechap(fecha);
+                ver.setHorap(hora);
+                Alert alertagregar = new Alert(Alert.AlertType.INFORMATION);
+                alertagregar.setHeaderText("Se ha modificado");
+                alertagregar.setContentText("Se agrego con exito");
+                alertagregar.showAndWait();
+
+            }
+        }
+        if (idmod){
+            Alert alerterrorp = new Alert(Alert.AlertType.ERROR);
+            alerterrorp.setHeaderText("Error al agregar");
+            alerterrorp.setContentText("Ups... hubo un problema al agregar su pedido, intentelo de nuevo");
+            alerterrorp.showAndWait();
+        }
+
     }
 
     @FXML

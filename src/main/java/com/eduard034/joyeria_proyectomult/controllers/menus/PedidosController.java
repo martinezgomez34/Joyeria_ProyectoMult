@@ -17,8 +17,7 @@ public class PedidosController {
 
     @FXML
     private URL location;
-    @FXML
-    private Button BActu;
+
     @FXML
     private TableColumn<Pedid0s, String> MosCant;
 
@@ -41,9 +40,6 @@ public class PedidosController {
     private TableColumn<Pedid0s, Integer> Mostipo;
     @FXML
     private TableView<Pedid0s> Mpedidos;
-    @FXML
-    private Button Bactu;
-
 
     @FXML
     private Button agregarPedidosButton;
@@ -57,12 +53,11 @@ public class PedidosController {
     @FXML
     private Button modificarPedidosButton;
     @FXML
-    void BActu(MouseEvent event) {
+    void Bactu(MouseEvent event) {
         Database date = JoyeriaApp.getData();
         Mpedidos.getItems().clear();
         Mpedidos.getItems().addAll(date.getListapedidos());
     }
-
     @FXML
     void onClickAgregarPedidosButton(MouseEvent event) {
     JoyeriaApp.newStage("AgregarP.fxml","AgregarPedidos");
