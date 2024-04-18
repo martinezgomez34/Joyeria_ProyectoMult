@@ -4,9 +4,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
+import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.Joya;
+import com.eduard034.joyeria_proyectomult.models.Venta;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class EventasController {
@@ -21,31 +24,71 @@ public class EventasController {
     private TextField Beliminarp;
 
     @FXML
-    private TextField Mventaaeliminar;
-
-    @FXML
     private Button bttneliminarv;
 
     @FXML
     private Button bttnsalirev;
 
     @FXML
+    private TableColumn<Venta, Integer> cantidadColumn;
+
+    @FXML
+    private TableColumn<Venta, String> fechaColumn;
+
+    @FXML
+    private TableColumn<Venta, String> nombrecolumn;
+
+    @FXML
+    private TableColumn<Venta, String> tipoColumn;
+
+    @FXML
+    private TableColumn<Venta, String> totalColumn;
+
+    @FXML
+    private TableView<Venta> verLista;
+
+    @FXML
     void bttneliminarv(MouseEvent event) {
-
+        Database database = JoyeriaApp.getData();
+        String nbusqueda = Beliminarp.getText();
+        boolean busqueda = true;
+        for (Venta item: JoyeriaApp.getData().getListaVenta()) {
+            if (item.getNombreDCliente()==nbusqueda) {
+                busqueda = false;
+                JoyeriaApp.getData().getListaVenta().remove(item);
+                JoyeriaApp.newStage("ModificarV.fxml","Modificar Ventas");
+            }
+        }
+        if (busqueda) {
+            showAlert(Alert.AlertType.ERROR, "Error", "No se encontró el ID.");
+        }
     }
-
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
     @FXML
     void bttnsalirev(MouseEvent event) {
         JoyeriaApp.getStageView().close();
     }
 
     @FXML
-    void initialize() {
-        assert Beliminarp != null : "fx:id=\"Beliminarp\" was not injected: check your FXML file 'EliminarV.fxml'.";
-        assert Mventaaeliminar != null : "fx:id=\"Mventaaeliminar\" was not injected: check your FXML file 'EliminarV.fxml'.";
-        assert bttneliminarv != null : "fx:id=\"bttneliminarv\" was not injected: check your FXML file 'EliminarV.fxml'.";
-        assert bttnsalirev != null : "fx:id=\"bttnsalirev\" was not injected: check your FXML file 'EliminarV.fxml'.";
+    void onClickVerLista(MouseEvent event) {
+        Database date = JoyeriaApp.getData();
+        verLista.getItems().clear();
+        verLista.getItems().addAll(date.getListaVenta());
+    }
 
+    @FXML
+    void initialize() {
+        nombrecolumn.setCellValueFactory(new PropertyValueFactory<>("nombreDCliente"));
+        fechaColumn.setCellValueFactory(new PropertyValueFactory<>("fechaDVenta"));
+        totalColumn.setCellValueFactory(new PropertyValueFactory<>("totalGanancia"));
+        tipoColumn.setCellValueFactory(new PropertyValueFactory<>("tipoDJoya"));
+        cantidadColumn.setCellValueFactory(new PropertyValueFactory<>("cantidadDJoya"));
     }
 
 }

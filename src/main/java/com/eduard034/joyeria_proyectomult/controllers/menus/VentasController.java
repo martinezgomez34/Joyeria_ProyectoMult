@@ -3,9 +3,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
+import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.Venta;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 public class VentasController {
     @FXML
@@ -18,13 +23,31 @@ public class VentasController {
     private Button agregarVentasButton;
 
     @FXML
+    private TableColumn<String, Integer> cantidadColumn;
+
+    @FXML
     private Button eliminarVentasButton;
 
     @FXML
     private Button exitVentasButton;
 
     @FXML
+    private TableColumn<Venta, String> fechaColumn;
+
+    @FXML
     private Button modificarVentasButton;
+
+    @FXML
+    private TableColumn<Venta, String> nombreColumn;
+
+    @FXML
+    private TableColumn<Venta, String> tipoColumn;
+
+    @FXML
+    private TableColumn<Venta, String> totalColumn;
+
+    @FXML
+    private TableView<Venta> verLista;
 
     @FXML
     void onClickAgregarVentasButton(MouseEvent event) {
@@ -47,12 +70,19 @@ public class VentasController {
     }
 
     @FXML
-    void initialize() {
-        assert agregarVentasButton != null : "fx:id=\"agregarVentasButton\" was not injected: check your FXML file 'ventas.fxml'.";
-        assert eliminarVentasButton != null : "fx:id=\"eliminarVentasButton\" was not injected: check your FXML file 'ventas.fxml'.";
-        assert exitVentasButton != null : "fx:id=\"exitVentasButton\" was not injected: check your FXML file 'ventas.fxml'.";
-        assert modificarVentasButton != null : "fx:id=\"modificarVentasButton\" was not injected: check your FXML file 'ventas.fxml'.";
+    void onClickVerLista(MouseEvent event) {
+        Database date = JoyeriaApp.getData();
+        verLista.getItems().clear();
+        verLista.getItems().addAll(date.getListaVenta());
+    }
 
+    @FXML
+    void initialize() {
+        nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombreDCliente"));
+        fechaColumn.setCellValueFactory(new PropertyValueFactory<>("fechaDVenta"));
+        totalColumn.setCellValueFactory(new PropertyValueFactory<>("totalGanancia"));
+        tipoColumn.setCellValueFactory(new PropertyValueFactory<>("tipoDJoya"));
+        cantidadColumn.setCellValueFactory(new PropertyValueFactory<>("cantidadDJoya"));
     }
 
 }

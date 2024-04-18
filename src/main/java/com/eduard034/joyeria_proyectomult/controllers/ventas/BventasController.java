@@ -4,7 +4,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
+import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.Joya;
+import com.eduard034.joyeria_proyectomult.models.Venta;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -28,9 +32,27 @@ public class BventasController {
 
     @FXML
     void bttnbuscarp(MouseEvent event) {
-        JoyeriaApp.newStage("ModificarV.fxml","Modificar Ventas");
+        Database database = JoyeriaApp.getData();
+        String nbusqueda = Bpedidosmp.getText();
+        boolean busqueda = true;
+        for (Venta item: JoyeriaApp.getData().getListaVenta()) {
+            if (item.getNombreDCliente()==nbusqueda) {
+                busqueda = false;
+                database.setNBusqueda(nbusqueda);
+                JoyeriaApp.newStage("ModificarV.fxml","Modificar Ventas");
+            }
+        }
+        if (busqueda) {
+            showAlert(Alert.AlertType.ERROR, "Error", "No se encontró el ID.");
+        }
     }
-
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
     @FXML
     void bttnsalirbp(MouseEvent event) {
         JoyeriaApp.getStageView().close();
@@ -38,9 +60,6 @@ public class BventasController {
 
     @FXML
     void initialize() {
-        assert Bpedidosmp != null : "fx:id=\"Bpedidosmp\" was not injected: check your FXML file 'BuscarV.fxml'.";
-        assert bttnbuscarv != null : "fx:id=\"bttnbuscarv\" was not injected: check your FXML file 'BuscarV.fxml'.";
-        assert bttnsalirbv != null : "fx:id=\"bttnsalirbv\" was not injected: check your FXML file 'BuscarV.fxml'.";
 
     }
 

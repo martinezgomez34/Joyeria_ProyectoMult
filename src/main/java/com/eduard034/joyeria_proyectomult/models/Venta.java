@@ -54,4 +54,5 @@ public class Venta {
     public void setNombreDCliente(String nombreDCliente) {
         this.nombreDCliente = nombreDCliente;
     }
+
 }

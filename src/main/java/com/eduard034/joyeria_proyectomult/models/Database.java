@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Database {
     public int IdBusqueda;
+    public String NBusqueda;
     public ArrayList<Gasto> listaGastos = new ArrayList<>();
     public ArrayList<Joya> listaJoya = new ArrayList<>();
     public ArrayList<Venta> listaVenta = new ArrayList<>();
@@ -36,5 +37,12 @@ public class Database {
 
     public void setIdBusqueda(int idBusqueda) {
         IdBusqueda = idBusqueda;
+    }
+
+    public String getNBusqueda() {
+        return NBusqueda;
+    }
+    public void setNBusqueda(String nBusqueda) {
+        NBusqueda = nBusqueda;
     }
 }
