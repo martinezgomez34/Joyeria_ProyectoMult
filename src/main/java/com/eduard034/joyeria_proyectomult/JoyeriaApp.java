@@ -1,5 +1,6 @@
 package com.eduard034.joyeria_proyectomult;
 
+import com.eduard034.joyeria_proyectomult.models.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +16,8 @@ import java.io.IOException;
 public class JoyeriaApp extends javafx.application.Application {
     private static Stage stageView;
     private static Stage stageRoot;
+    private static Database data = new Database();
+    public static Database getData(){return data;}
     @Override
     public void start(Stage stage) throws IOException {
         stageRoot = stage;
@@ -44,17 +47,16 @@ public class JoyeriaApp extends javafx.application.Application {
         }
     }
 
-    public static Stage getStageView(){
-        return stageView;
-    }
-
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(JoyeriaApp.class.getResource(fxml));
         return fxmlLoader.load();
     }
 
+    public static Stage getStageView(){
+        return stageView;
+    }
+
     public static void main(String[] args) {
         launch();
-        System.exit(1);
     }
 }

@@ -13,19 +13,19 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="Anombreclientev" layoutX="597.0" layoutY="241.0" prefHeight="34.0" prefWidth="752.0" promptText="¿Que tipo de gasto fue?" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="ingTipGas" layoutX="597.0" layoutY="241.0" prefHeight="34.0" prefWidth="752.0" promptText="¿Que tipo de gasto fue?" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Text fill="WHITE" layoutX="598.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese la cantidad:">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="Afechav" layoutX="597.0" layoutY="333.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese la cantidad que gastó" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="ingCantidad" layoutX="597.0" layoutY="333.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese la cantidad que gastó" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Text fill="WHITE" layoutX="597.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese la fecha:">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="Agananciav" layoutX="597.0" layoutY="431.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese la fecha que se realizó" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="ingFecha" layoutX="597.0" layoutY="431.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese la fecha que se realizó" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Button fx:id="bttnagregarg" layoutX="871.0" layoutY="540.0" mnemonicParsing="false" onMouseClicked="#bttnagregarg" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: #2C8A2F; -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 0.2;" text="Agregar" textFill="#f4f4f4">
          <font>
             <Font name="Arial Bold" size="14.0" />
