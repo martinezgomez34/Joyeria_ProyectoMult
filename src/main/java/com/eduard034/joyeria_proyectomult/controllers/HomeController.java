@@ -45,7 +45,9 @@ public class HomeController {
     }
 
     @FXML
-    void onClickExitHome(MouseEvent event) { JoyeriaApp.newStage("InicioSecion.fxml","Inicio de secion");}
+    void onClickExitHome(MouseEvent event) {
+        JoyeriaApp.newStage("InicioSecion.fxml","Inicio de secion");
+    }
 
     @FXML
     void onClickVentasButton(MouseEvent event) {

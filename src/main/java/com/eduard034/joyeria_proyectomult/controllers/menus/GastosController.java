@@ -3,12 +3,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
-import javafx.application.Platform;
+import com.eduard034.joyeria_proyectomult.models.Gasto;
+import com.eduard034.joyeria_proyectomult.models.Database;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TableColumn;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.TableView;
 
 public class GastosController {
+    @FXML
+    private Button actualizar;
+
     @FXML
     private ResourceBundle resources;
 
@@ -19,22 +26,41 @@ public class GastosController {
     private Button agregarGastosButton;
 
     @FXML
+    private TableColumn<Gasto, String> cantidadColumn;
+
+    @FXML
+    private TableColumn<Gasto, String> descripcionColumn;
+
+    @FXML
     private Button eliminarGastosButton;
 
     @FXML
     private Button exitGastosButton;
 
     @FXML
-    private Button modificarGastosButton;
+    private TableColumn<Gasto, String> fechaColumn;
+
+    @FXML
+    private TableColumn<Gasto, Integer> idColumn;
+
+
+    @FXML
+    private TableView<Gasto> verGasto;
+    @FXML
+    void onClickActualizar(MouseEvent event) {
+        Database date = JoyeriaApp.getData();
+        verGasto.getItems().clear();
+        verGasto.getItems().addAll(date.getListaGastos());
+    }
 
     @FXML
     void onClickAgregarGastosButton(MouseEvent event) {
-        JoyeriaApp.newStage("AgregarG.fxml","Agregar Gastos");
+        JoyeriaApp.newStage("AgregarG.fxml","AgregarGastos");
     }
 
     @FXML
     void onClickEliminarGastosButton(MouseEvent event) {
-        JoyeriaApp.newStage("EliminarG.fxml","Eliminar Gastos");
+        JoyeriaApp.newStage("EliminarG.fxml","EliminarGastos");
     }
 
     @FXML
@@ -44,16 +70,15 @@ public class GastosController {
 
     @FXML
     void onClickModificarGastosButton(MouseEvent event) {
-        JoyeriaApp.newStage("BuscarG.fxml","Buscar Gastos");
+        JoyeriaApp.newStage("ModificarG.fxml","ModificarGastos");
     }
 
     @FXML
     void initialize() {
-        assert agregarGastosButton != null : "fx:id=\"agregarGastosButton\" was not injected: check your FXML file 'gastos.fxml'.";
-        assert eliminarGastosButton != null : "fx:id=\"eliminarGastosButton\" was not injected: check your FXML file 'gastos.fxml'.";
-        assert exitGastosButton != null : "fx:id=\"exitGastosButton\" was not injected: check your FXML file 'gastos.fxml'.";
-        assert modificarGastosButton != null : "fx:id=\"modificarGastosButton\" was not injected: check your FXML file 'gastos.fxml'.";
-
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        descripcionColumn.setCellValueFactory(new PropertyValueFactory<>("descripcionDGasto"));
+        cantidadColumn.setCellValueFactory(new PropertyValueFactory<>("cantidadDGasto"));
+        fechaColumn.setCellValueFactory(new PropertyValueFactory<>("fechaDGasto"));
     }
 
 }

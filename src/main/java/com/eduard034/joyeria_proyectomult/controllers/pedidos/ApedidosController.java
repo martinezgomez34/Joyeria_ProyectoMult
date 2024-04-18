@@ -1,9 +1,11 @@
 package com.eduard034.joyeria_proyectomult.controllers.pedidos;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
+import com.eduard034.joyeria_proyectomult.models.Pedid0s;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -43,7 +45,17 @@ public class ApedidosController {
 
     @FXML
     void bttnagregarp(MouseEvent event) {
-
+        Random generar = new Random();
+        int id = generar.nextInt(1000);
+        String nombre = Inombrecliente.getText();
+        Integer contacto = Integer.valueOf(Icontactocliente.getText());
+        Integer tipo = Integer.valueOf(Itiposdejoya.getText());
+        String cantidad = Icantidadjoyas.getText();
+        String fecha = Ifecha.getText();
+        String hora = Ihora.getText();
+        Pedid0s pedido = new Pedid0s(id,nombre,contacto,tipo,cantidad,fecha,hora);
+        JoyeriaApp.getData().setListapedidos(pedido);
+        JoyeriaApp.getStageView().close();
     }
 
     @FXML

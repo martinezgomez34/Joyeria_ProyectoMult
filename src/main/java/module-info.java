@@ -7,6 +7,7 @@ module com.eduard034.joyeria_proyectomult {
     requires net.synedra.validatorfx;
     requires org.kordamp.bootstrapfx.core;
 
+    opens com.eduard034.joyeria_proyectomult.models to javafx.base;
     opens com.eduard034.joyeria_proyectomult to javafx.fxml;
     exports com.eduard034.joyeria_proyectomult;
     exports com.eduard034.joyeria_proyectomult.controllers;
