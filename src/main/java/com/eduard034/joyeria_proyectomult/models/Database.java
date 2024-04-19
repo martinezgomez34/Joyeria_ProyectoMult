@@ -20,8 +20,6 @@ public class Database {
 
     private int IdbP;
     private ArrayList<Pedid0s>listapedidos = new ArrayList<>();
-    public ArrayList<Gasto> listaGastos = new ArrayList<>();
-
 
     public ArrayList<Gasto> getListaGastos() {
         return listaGastos;
@@ -59,7 +57,7 @@ public class Database {
     }
     public void setNBusqueda(String nBusqueda) {
         NBusqueda = nBusqueda;
-
+    }
     public ArrayList<Pedid0s> getListapedidos() {
         return listapedidos;
     }

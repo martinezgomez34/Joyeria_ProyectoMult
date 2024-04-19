@@ -67,19 +67,6 @@ public class MpedidosController {
     private TableColumn<Pedid0s,Integer> tipomod;
 
     @FXML
-    private TableColumn<Pedid0s,Integer> tipomod;
-    @FXML
-    void actu(MouseEvent event) {
-        Database date = JoyeriaApp.getData();
-        int id = date.getIdbP();
-        Mverpedidos.getItems().clear();
-        for (Pedid0s item : JoyeriaApp.getData().getListapedidos()) {
-            if (item.getId() == id) {
-                Mverpedidos.getItems().addAll(item);
-            }
-        }
-    }
-    @FXML
     void bttnmodificarp(MouseEvent event) {
         Database date = JoyeriaApp.getData();
         int id = date.getIdbP();

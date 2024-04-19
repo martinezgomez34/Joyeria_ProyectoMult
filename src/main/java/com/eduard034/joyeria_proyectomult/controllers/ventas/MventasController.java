@@ -64,7 +64,7 @@ public class MventasController {
         String nbusqueda = database.getNBusqueda();
         boolean busqueda = true;
         for (Venta item: JoyeriaApp.getData().getListaVenta()) {
-            if (item.getNombreDCliente()==nbusqueda) {
+            if (item.getNombreDCliente().equals(nbusqueda)) {
                 busqueda = false;
                 String nombre = Anombremv.getText();
                 String fecha = Afechamv.getText();
@@ -82,7 +82,7 @@ public class MventasController {
         if (busqueda) {
             showAlert(Alert.AlertType.ERROR, "Error", "No se encontró el nombre.");
         }
-        JoyeriaApp.newStage("ModificarV.fxml","Modificar Ventas");
+        JoyeriaApp.newStage("ventas.fxml","Ventas");
     }
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);

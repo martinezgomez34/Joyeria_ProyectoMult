@@ -36,14 +36,14 @@ public class BventasController {
         String nbusqueda = Bpedidosmp.getText();
         boolean busqueda = true;
         for (Venta item: JoyeriaApp.getData().getListaVenta()) {
-            if (item.getNombreDCliente()==nbusqueda) {
+            if (item.getNombreDCliente().equals(nbusqueda)) {
                 busqueda = false;
                 database.setNBusqueda(nbusqueda);
                 JoyeriaApp.newStage("ModificarV.fxml","Modificar Ventas");
             }
         }
         if (busqueda) {
-            showAlert(Alert.AlertType.ERROR, "Error", "No se encontró el ID.");
+            showAlert(Alert.AlertType.ERROR, "Error", "No se encontró el Nombre.");
         }
     }
     private void showAlert(Alert.AlertType alertType, String title, String message) {

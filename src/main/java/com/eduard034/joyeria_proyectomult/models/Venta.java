@@ -1,5 +1,7 @@
 package com.eduard034.joyeria_proyectomult.models;
 
+import java.util.Objects;
+
 public class Venta {
     private String nombreDCliente;
     private String fechaDVenta;
@@ -55,4 +57,16 @@ public class Venta {
         this.nombreDCliente = nombreDCliente;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Venta)) return false;
+        Venta venta = (Venta) o;
+        return Objects.equals(getNombreDCliente(), venta.getNombreDCliente());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNombreDCliente());
+    }
 }

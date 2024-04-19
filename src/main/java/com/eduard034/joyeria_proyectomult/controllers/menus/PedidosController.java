@@ -47,30 +47,6 @@ public class PedidosController {
     @FXML
     private Button Bactu;
 
-
-    @FXML
-    private TableColumn<Pedid0s, String> MosCant;
-
-    @FXML
-    private TableColumn<Pedid0s, Integer> MosContact;
-
-    @FXML
-    private TableColumn<Pedid0s,Integer> MosID;
-
-    @FXML
-    private TableColumn<Pedid0s, String> MosNom;
-
-    @FXML
-    private TableColumn<Pedid0s, String> Mosfecha;
-
-    @FXML
-    private TableColumn<Pedid0s, String> Moshora;
-
-    @FXML
-    private TableColumn<Pedid0s, Integer> Mostipo;
-    @FXML
-    private TableView<Pedid0s> Mpedidos;
-
     @FXML
     private Button agregarPedidosButton;
 

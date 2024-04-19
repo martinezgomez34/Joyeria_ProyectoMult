@@ -53,10 +53,10 @@ public class EventasController {
         String nbusqueda = Beliminarp.getText();
         boolean busqueda = true;
         for (Venta item: JoyeriaApp.getData().getListaVenta()) {
-            if (item.getNombreDCliente()==nbusqueda) {
+            if (item.getNombreDCliente().equals(nbusqueda)) {
                 busqueda = false;
                 JoyeriaApp.getData().getListaVenta().remove(item);
-                JoyeriaApp.newStage("ModificarV.fxml","Modificar Ventas");
+                JoyeriaApp.newStage("ventas.fxml","Ventas");
             }
         }
         if (busqueda) {
