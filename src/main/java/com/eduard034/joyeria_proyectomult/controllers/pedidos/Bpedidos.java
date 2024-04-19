@@ -4,8 +4,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
+import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.Pedid0s;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 public class Bpedidos {
@@ -15,6 +19,8 @@ public class Bpedidos {
 
     @FXML
     private URL location;
+    @FXML
+    private TextField Bpedidos;
 
     @FXML
     private Button bttnbuscarp;
@@ -24,7 +30,22 @@ public class Bpedidos {
 
     @FXML
     void bttnbuscarp(MouseEvent event) {
-        JoyeriaApp.newStage("ModificarP.fxml","Modificar Pedido");
+        Database date = JoyeriaApp.getData();
+        int Idbus = Integer.parseInt(Bpedidos.getText());
+        boolean ver = true;
+        for (Pedid0s buscar:JoyeriaApp.getData().getListapedidos()) {
+            if (Idbus == buscar.getId()) {
+                ver = false;
+                date.setIdbP(Idbus);
+                JoyeriaApp.newStage("ModificarP.fxml","Modificar Pedido");
+            }
+        }
+        if (ver) {
+            Alert alerterrorp = new Alert(Alert.AlertType.ERROR);
+            alerterrorp.setHeaderText("Error de busqueda");
+            alerterrorp.setContentText("Ups... no se pudo encontrar su pedido");
+            alerterrorp.showAndWait();
+        }
     }
 
     @FXML

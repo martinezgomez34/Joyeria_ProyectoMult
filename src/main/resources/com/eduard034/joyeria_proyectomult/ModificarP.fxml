@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eduard034.joyeria_proyectomult.controllers.pedidos.MpedidosController">
+<AnchorPane fx:id="Bactu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Bactu" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eduard034.joyeria_proyectomult.controllers.pedidos.MpedidosController">
    <children>
       <Text fill="WHITE" layoutX="487.0" layoutY="502.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresa el nombre del cliente:">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="Anombremp" layoutX="477.0" layoutY="522.0" prefHeight="20.0" prefWidth="407.0" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Anombremp" layoutX="477.0" layoutY="522.0" prefHeight="20.0" prefWidth="407.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Button fx:id="bttnmodificarp" layoutX="847.0" layoutY="756.0" mnemonicParsing="false" onMouseClicked="#bttnmodificarp" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: #2C8A2F; -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 0.2;" text="Modificar" textFill="#f4f4f4">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="Mpedidospm" layoutX="563.0" layoutY="179.0" prefHeight="242.0" prefWidth="746.0" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
       <Text fill="WHITE" layoutX="563.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datos Actuales:">
          <font>
             <Font name="Arial Bold" size="18.0" />
@@ -30,30 +31,41 @@
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="Acontactomp" layoutX="477.0" layoutY="600.0" prefHeight="20.0" prefWidth="407.0" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Acontactomp" layoutX="477.0" layoutY="600.0" prefHeight="20.0" prefWidth="407.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Text fill="WHITE" layoutX="487.0" layoutY="654.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese el/los tipos de joyas:">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="Atipodejoyasmp" layoutX="477.0" layoutY="674.0" prefHeight="20.0" prefWidth="407.0" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Atipodejoyasmp" layoutX="477.0" layoutY="674.0" prefHeight="20.0" prefWidth="407.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Text fill="WHITE" layoutX="997.0" layoutY="502.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese la cantidad de joyas:">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="Acantidaddejoyasmp" layoutX="987.0" layoutY="522.0" prefHeight="20.0" prefWidth="407.0" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Acantidaddejoyasmp" layoutX="987.0" layoutY="522.0" prefHeight="20.0" prefWidth="407.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Text fill="WHITE" layoutX="997.0" layoutY="580.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese la fecha:">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="Afechamp" layoutX="987.0" layoutY="600.0" prefHeight="20.0" prefWidth="407.0" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Afechamp" layoutX="987.0" layoutY="600.0" prefHeight="20.0" prefWidth="407.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Text fill="WHITE" layoutX="997.0" layoutY="654.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese la hora:">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="Ahoramp" layoutX="987.0" layoutY="674.0" prefHeight="20.0" prefWidth="407.0" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Ahoramp" layoutX="987.0" layoutY="674.0" prefHeight="20.0" prefWidth="407.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
+      <TableView fx:id="Mverpedidos" layoutX="622.0" layoutY="184.0" prefHeight="200.0" prefWidth="523.0">
+        <columns>
+          <TableColumn fx:id="idmod" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="nommod" prefWidth="75.0" text="Nombre" />
+            <TableColumn fx:id="contacmod" prefWidth="75.0" text="Contacto" />
+            <TableColumn fx:id="tipomod" prefWidth="75.0" text="tipo" />
+            <TableColumn fx:id="cantidadmod" prefWidth="75.0" text="Cantidad" />
+            <TableColumn fx:id="fechamod" prefWidth="75.0" text="Fecha" />
+            <TableColumn fx:id="horamod" prefWidth="75.0" text="Hora" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
