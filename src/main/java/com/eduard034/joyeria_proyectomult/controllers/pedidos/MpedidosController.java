@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class MpedidosController {
 
@@ -19,6 +20,8 @@ public class MpedidosController {
 
     @FXML
     private URL location;
+    @FXML
+    private AnchorPane Bactu;
 
     @FXML
     private TextField Acantidaddejoyasmp;
@@ -62,6 +65,9 @@ public class MpedidosController {
 
     @FXML
     private TableColumn<Pedid0s,Integer> tipomod;
+
+    @FXML
+    private TableColumn<Pedid0s,Integer> tipomod;
     @FXML
     void actu(MouseEvent event) {
         Database date = JoyeriaApp.getData();
@@ -78,8 +84,8 @@ public class MpedidosController {
         Database date = JoyeriaApp.getData();
         int id = date.getIdbP();
         boolean idmod = true;
-        for (Pedid0s ver:date.getListapedidos()){
-            if(ver.getId() == id){
+        for (Pedid0s ver : JoyeriaApp.getData().getListapedidos()){
+            if (ver.getId() == id){
                 idmod = false;
                 String nombre = Anombremp.getText();
                 Integer contacto = Integer.valueOf(Acontactomp.getText());
@@ -97,7 +103,6 @@ public class MpedidosController {
                 alertagregar.setHeaderText("Se ha modificado");
                 alertagregar.setContentText("Se agrego con exito");
                 alertagregar.showAndWait();
-
             }
         }
         if (idmod){
@@ -105,8 +110,14 @@ public class MpedidosController {
             alerterrorp.setHeaderText("Error al agregar");
             alerterrorp.setContentText("Ups... hubo un problema al agregar su pedido, intentelo de nuevo");
             alerterrorp.showAndWait();
-        }
+        }JoyeriaApp.newStage("pedidos.fxml","Pedidos");
 
+    }
+    @FXML
+    void Bactu(MouseEvent event) {
+        Database date = JoyeriaApp.getData();
+        Mverpedidos.getItems().clear();
+        Mverpedidos.getItems().addAll(date.getListapedidos());
     }
 
     @FXML

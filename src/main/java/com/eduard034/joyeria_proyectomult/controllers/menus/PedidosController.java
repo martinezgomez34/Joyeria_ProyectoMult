@@ -11,12 +11,42 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+
 public class PedidosController {
     @FXML
     private ResourceBundle resources;
 
     @FXML
     private URL location;
+    @FXML
+    private AnchorPane BActu;
+
+    @FXML
+    private TableColumn<Pedid0s, String> MosCant;
+
+    @FXML
+    private TableColumn<Pedid0s, Integer> MosContact;
+
+    @FXML
+    private TableColumn<Pedid0s,Integer> MosID;
+
+    @FXML
+    private TableColumn<Pedid0s, String> MosNom;
+
+    @FXML
+    private TableColumn<Pedid0s, String> Mosfecha;
+
+    @FXML
+    private TableColumn<Pedid0s, String> Moshora;
+
+    @FXML
+    private TableColumn<Pedid0s, Integer> Mostipo;
+    @FXML
+    private TableView<Pedid0s> Mpedidos;
+    @FXML
+    private Button Bactu;
+
 
     @FXML
     private TableColumn<Pedid0s, String> MosCant;
@@ -53,7 +83,7 @@ public class PedidosController {
     @FXML
     private Button modificarPedidosButton;
     @FXML
-    void Bactu(MouseEvent event) {
+    void BActu(MouseEvent event) {
         Database date = JoyeriaApp.getData();
         Mpedidos.getItems().clear();
         Mpedidos.getItems().addAll(date.getListapedidos());
