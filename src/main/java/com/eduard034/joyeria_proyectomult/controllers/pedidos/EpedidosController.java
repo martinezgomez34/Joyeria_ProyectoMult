@@ -72,7 +72,7 @@ public class EpedidosController {
                     JoyeriaApp.getData().getListapedidos().remove(ver);
                     Alert alertagregar = new Alert(Alert.AlertType.INFORMATION);
                     alertagregar.setHeaderText("Se ha eliminado su pedido");
-                    alertagregar.setContentText("Haga click para continuar");
+                    alertagregar.setContentText("Haga click en aceptar para continuar");
                     alertagregar.showAndWait();
                 }
             }
