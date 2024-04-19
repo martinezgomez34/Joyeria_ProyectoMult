@@ -11,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+
 public class PedidosController {
     @FXML
     private ResourceBundle resources;
@@ -18,7 +20,8 @@ public class PedidosController {
     @FXML
     private URL location;
     @FXML
-    private Button BActu;
+    private AnchorPane BActu;
+
     @FXML
     private TableColumn<Pedid0s, String> MosCant;
 

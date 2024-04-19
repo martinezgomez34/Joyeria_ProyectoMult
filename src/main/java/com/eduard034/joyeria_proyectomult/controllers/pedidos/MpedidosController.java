@@ -8,12 +8,10 @@ import com.eduard034.joyeria_proyectomult.JoyeriaApp;
 import com.eduard034.joyeria_proyectomult.models.Database;
 import com.eduard034.joyeria_proyectomult.models.Pedid0s;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class MpedidosController {
 
@@ -22,6 +20,8 @@ public class MpedidosController {
 
     @FXML
     private URL location;
+    @FXML
+    private AnchorPane Bactu;
 
     @FXML
     private TextField Acantidaddejoyasmp;
@@ -70,24 +70,35 @@ public class MpedidosController {
     void bttnmodificarp(MouseEvent event) {
         Database date = JoyeriaApp.getData();
         int id = date.getIdbP();
-        String nombre = Anombremp.getText();
-        Integer contacto = Integer.valueOf(Acontactomp.getText());
-        Integer tipo = Integer.valueOf(Atipodejoyasmp.getText());
-        String cantidad = Acantidaddejoyasmp.getText();
-        String fecha = Afechamp.getText();
-        String hora = Ahoramp.getText();
-        Pedid0s pedidosm = new Pedid0s(id,nombre,contacto,tipo,cantidad,fecha,hora);
-        if (date.getListapedidos().contains(pedidosm)){
-            for (Pedid0s mod : date.getListapedidos()){
-                nombre = mod.getNombrec();
-                contacto = mod.getContactoc();
-                tipo = mod.getTipoj();
-                cantidad = mod.getCantidadj();
-                fecha = mod.getFechap();
-                hora = mod.getHorap();
-                JoyeriaApp.newStage("pedidos.fxml","Pedidos");
+        boolean idmod = true;
+        for (Pedid0s ver : JoyeriaApp.getData().getListapedidos()){
+            if (ver.getId() == id){
+                idmod = false;
+                String nombre = Anombremp.getText();
+                Integer contacto = Integer.valueOf(Acontactomp.getText());
+                Integer tipo = Integer.valueOf(Atipodejoyasmp.getText());
+                String cantidad = Acantidaddejoyasmp.getText();
+                String fecha = Afechamp.getText();
+                String hora = Ahoramp.getText();
+                ver.setNombrec(nombre);
+                ver.setContactoc(contacto);
+                ver.setTipoj(tipo);
+                ver.setCantidadj(cantidad);
+                ver.setFechap(fecha);
+                ver.setHorap(hora);
+                Alert alertagregar = new Alert(Alert.AlertType.INFORMATION);
+                alertagregar.setHeaderText("Se ha modificado");
+                alertagregar.setContentText("Se agrego con exito");
+                alertagregar.showAndWait();
             }
         }
+        if (idmod){
+            Alert alerterrorp = new Alert(Alert.AlertType.ERROR);
+            alerterrorp.setHeaderText("Error al agregar");
+            alerterrorp.setContentText("Ups... hubo un problema al agregar su pedido, intentelo de nuevo");
+            alerterrorp.showAndWait();
+        }JoyeriaApp.newStage("pedidos.fxml","Pedidos");
+
     }
     @FXML
     void Bactu(MouseEvent event) {

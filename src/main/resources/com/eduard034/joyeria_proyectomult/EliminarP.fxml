@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eduard034.joyeria_proyectomult.controllers.pedidos.EpedidosController">
+<AnchorPane fx:id="Actua" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Actua" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eduard034.joyeria_proyectomult.controllers.pedidos.EpedidosController">
    <children>
       <Text fill="WHITE" layoutX="582.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese el ID a eliminar">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="Beliminarp" layoutX="582.0" layoutY="184.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese el ID" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
-      <TextField fx:id="Mpedidoaeliminar" layoutX="499.0" layoutY="260.0" prefHeight="481.0" prefWidth="919.0" style="-fx-background-color: #313131; -fx-border-color: white; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 0.2;" />
+      <TextField fx:id="Beliminarp" layoutX="582.0" layoutY="184.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese el ID" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Button fx:id="bttneliminarp" layoutX="869.0" layoutY="775.0" mnemonicParsing="false" onMouseClicked="#bttneliminarp" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: A13030; -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 0.2;" text="Eliminar" textFill="#f4f4f4">
          <font>
             <Font name="Arial Bold" size="14.0" />
@@ -26,5 +26,16 @@
             <Font name="Arial Bold" size="12.0" />
          </font>
       </Button>
+      <TableView fx:id="Meliminarpedidos" layoutX="696.0" layoutY="366.0" prefHeight="200.0" prefWidth="528.0">
+        <columns>
+          <TableColumn fx:id="deleteid" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="deletenom" prefWidth="75.0" text="Nombre" />
+            <TableColumn fx:id="deletecont" prefWidth="75.0" text="Contacto" />
+            <TableColumn fx:id="deletetipo" prefWidth="75.0" text="Tipo" />
+            <TableColumn fx:id="deletecant" prefWidth="75.0" text="Cantidad" />
+            <TableColumn fx:id="deletefe" prefWidth="75.0" text="Fecha" />
+            <TableColumn fx:id="deleteho" prefWidth="75.0" text="Hora" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
