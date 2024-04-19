@@ -13,31 +13,31 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="Anombreclientev" layoutX="597.0" layoutY="241.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese su nombre" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Anombreclientev" layoutX="597.0" layoutY="241.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese su nombre" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Text fill="WHITE" layoutX="598.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese la fecha:">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="Afechav" layoutX="597.0" layoutY="333.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese la fecha la cual se realizo el pago" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Afechav" layoutX="597.0" layoutY="333.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese la fecha la cual se realizo el pago" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Text fill="WHITE" layoutX="597.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese la ganancia:">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="Agananciav" layoutX="597.0" layoutY="431.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese la ganancia de la venta" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Agananciav" layoutX="597.0" layoutY="431.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese la ganancia de la venta" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Text fill="WHITE" layoutX="597.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese el/los tipos de joya:">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="Atipodejoyav" layoutX="597.0" layoutY="520.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese lo que se vendio:" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Atipodejoyav" layoutX="597.0" layoutY="520.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese lo que se vendio:" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Text fill="WHITE" layoutX="597.0" layoutY="591.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese la cantidad de joyas:">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="Acantidadv" layoutX="597.0" layoutY="615.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese la cantidad que se vendio:" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Acantidadv" layoutX="597.0" layoutY="615.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese la cantidad que se vendio:" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Button fx:id="bttnagregarv" layoutX="871.0" layoutY="726.0" mnemonicParsing="false" onMouseClicked="#bttnagregarv" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: #2C8A2F; -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 0.2;" text="Agregar" textFill="#f4f4f4">
          <font>
             <Font name="Arial Bold" size="14.0" />

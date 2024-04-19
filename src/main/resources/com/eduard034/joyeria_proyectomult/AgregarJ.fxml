@@ -13,19 +13,19 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="Anombrej" layoutX="597.0" layoutY="241.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese el nombre de la joya" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Anombrej" layoutX="597.0" layoutY="241.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese el nombre de la joya" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Text fill="WHITE" layoutX="597.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese la cantidad en stock:">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="Acantidadj" layoutX="597.0" layoutY="333.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese la cantidad de la joya disponible" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Acantidadj" layoutX="597.0" layoutY="333.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese la cantidad de la joya disponible" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Text fill="WHITE" layoutX="597.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese una descripción de este:">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="Adescripcionj" layoutX="597.0" layoutY="431.0" prefHeight="176.0" prefWidth="752.0" promptText="Ingrese una breve descripción de la joya" style="-fx-background-color: #313131; -fx-background-radius: 30;" />
+      <TextField fx:id="Adescripcionj" layoutX="597.0" layoutY="431.0" prefHeight="176.0" prefWidth="752.0" promptText="Ingrese una breve descripción de la joya" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Button fx:id="bttnagregarj" layoutX="871.0" layoutY="722.0" mnemonicParsing="false" onMouseClicked="#bttnagregarj" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: #2C8A2F; -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 0.2;" text="Agregar" textFill="#f4f4f4">
          <font>
             <Font name="Arial Bold" size="14.0" />

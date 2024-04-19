@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableView;
 
 public class GastosController {
+
     @FXML
     private Button actualizar;
 
@@ -70,7 +71,7 @@ public class GastosController {
 
     @FXML
     void onClickModificarGastosButton(MouseEvent event) {
-        JoyeriaApp.newStage("ModificarG.fxml","ModificarGastos");
+        JoyeriaApp.newStage("BuscarG.fxml","ModificarGastos");
     }
 
     @FXML

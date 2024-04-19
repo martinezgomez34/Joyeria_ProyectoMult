@@ -7,11 +7,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eduard034.joyeria_proyectomult.controllers.menus.GastosController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClickActualizar" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eduard034.joyeria_proyectomult.controllers.menus.GastosController">
+
    <children>
       <Text fill="WHITE" layoutX="875.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gastos">
          <font>
-            <Font name="Baskerville Old Face" size="64.0" />
+            <Font name="Bodoni MT" size="64.0" />
          </font>
       </Text>
       <Button fx:id="exitGastosButton" layoutX="837.0" layoutY="871.0" mnemonicParsing="false" onMouseClicked="#onClickExitGastosButton" prefHeight="46.0" prefWidth="246.0" style="-fx-background-color: #313131; -fx-border-color: white; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="Salir" textFill="WHITE">
@@ -34,7 +36,10 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <TableView fx:id="verGasto" layoutX="399.0" layoutY="169.0" prefHeight="442.0" prefWidth="1122.0" style="-fx-background-color: white;">
+
+      <TableView fx:id="verGasto" layoutX="399.0" layoutY="169.0" prefHeight="442.0" prefWidth="1122.0">
+
+
          <columns>
             <TableColumn fx:id="idColumn" prefWidth="107.0" text="ID" />
             <TableColumn fx:id="descripcionColumn" minWidth="0.0" prefWidth="769.0" text="Descripcion" />
@@ -42,6 +47,5 @@
             <TableColumn fx:id="fechaColumn" prefWidth="163.0" text="Fecha" />
          </columns>
       </TableView>
-      <Button fx:id="actualizar" layoutX="150.0" layoutY="195.0" mnemonicParsing="false" onMouseClicked="#onClickActualizar" text="Button" />
    </children>
 </AnchorPane>
