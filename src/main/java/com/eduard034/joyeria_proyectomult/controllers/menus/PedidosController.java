@@ -49,6 +49,29 @@ public class PedidosController {
 
 
     @FXML
+    private TableColumn<Pedid0s, String> MosCant;
+
+    @FXML
+    private TableColumn<Pedid0s, Integer> MosContact;
+
+    @FXML
+    private TableColumn<Pedid0s,Integer> MosID;
+
+    @FXML
+    private TableColumn<Pedid0s, String> MosNom;
+
+    @FXML
+    private TableColumn<Pedid0s, String> Mosfecha;
+
+    @FXML
+    private TableColumn<Pedid0s, String> Moshora;
+
+    @FXML
+    private TableColumn<Pedid0s, Integer> Mostipo;
+    @FXML
+    private TableView<Pedid0s> Mpedidos;
+
+    @FXML
     private Button agregarPedidosButton;
 
     @FXML
@@ -65,7 +88,6 @@ public class PedidosController {
         Mpedidos.getItems().clear();
         Mpedidos.getItems().addAll(date.getListapedidos());
     }
-
     @FXML
     void onClickAgregarPedidosButton(MouseEvent event) {
     JoyeriaApp.newStage("AgregarP.fxml","AgregarPedidos");
