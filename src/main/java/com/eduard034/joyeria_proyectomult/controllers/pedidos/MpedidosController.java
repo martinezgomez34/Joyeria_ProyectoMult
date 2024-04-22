@@ -76,7 +76,7 @@ public class MpedidosController {
                 idmod = false;
                 String nombre = Anombremp.getText();
                 Integer contacto = Integer.valueOf(Acontactomp.getText());
-                Integer tipo = Integer.valueOf(Atipodejoyasmp.getText());
+                String tipo = Atipodejoyasmp.getText();
                 String cantidad = Acantidaddejoyasmp.getText();
                 String fecha = Afechamp.getText();
                 String hora = Ahoramp.getText();

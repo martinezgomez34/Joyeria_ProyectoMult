@@ -6,12 +6,12 @@ public class Pedid0s {
     private int id;
     private String nombrec;
     private int contactoc;
-    private int tipoj;
+    private String tipoj;
     private String cantidadj;
     private String fechap;
     private String horap;
 
-    public Pedid0s(int id, String nombrec, int contactoc, int tipoj, String cantidadj, String fechap, String horap) {
+    public Pedid0s(int id, String nombrec, int contactoc, String tipoj, String cantidadj, String fechap, String horap) {
         this.id = id;
         this.nombrec = nombrec;
         this.contactoc = contactoc;
@@ -45,11 +45,11 @@ public class Pedid0s {
         this.contactoc = contactoc;
     }
 
-    public int getTipoj() {
+    public String getTipoj() {
         return tipoj;
     }
 
-    public void setTipoj(int tipoj) {
+    public void setTipoj(String tipoj) {
         this.tipoj = tipoj;
     }
 

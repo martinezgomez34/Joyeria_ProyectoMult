@@ -49,7 +49,7 @@ public class ApedidosController {
         int id = generar.nextInt(1000);
         String nombre = Inombrecliente.getText();
         Integer contacto = Integer.valueOf(Icontactocliente.getText());
-        Integer tipo = Integer.valueOf(Itiposdejoya.getText());
+        String tipo = Itiposdejoya.getText();
         String cantidad = Icantidadjoyas.getText();
         String fecha = Ifecha.getText();
         String hora = Ihora.getText();
