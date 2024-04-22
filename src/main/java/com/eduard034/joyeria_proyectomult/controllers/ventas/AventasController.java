@@ -1,14 +1,19 @@
 package com.eduard034.joyeria_proyectomult.controllers.ventas;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
+import com.eduard034.joyeria_proyectomult.models.Database;
 import com.eduard034.joyeria_proyectomult.models.Gasto;
+import com.eduard034.joyeria_proyectomult.models.Pedid0s;
 import com.eduard034.joyeria_proyectomult.models.Venta;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -41,6 +46,8 @@ public class AventasController {
     @FXML
     private Button bttnsalirav;
 
+    Pedid0s pedid0s;
+    Database data;
     @FXML
     void bttnagregarv(MouseEvent event) {
         String nombre = Anombreclientev.getText();
@@ -49,6 +56,19 @@ public class AventasController {
         String tipo = Atipodejoyav.getText();
         int cantidad = Integer.parseInt(Acantidadv.getText());
         Venta venta = new Venta(nombre,fecha,total,tipo,cantidad);
+        for (Pedid0s ver : JoyeriaApp.getData().getListapedidos()) {
+            if (ver.getNombrec().equals(nombre) && ver.getCantidadj() == cantidad) {
+                Alert alertC = new Alert(Alert.AlertType.CONFIRMATION);
+                alertC.setHeaderText("Confirmar venta");
+                alertC.setContentText("¿Estas seguro que se realizo la venta del pedido?");
+                Optional<ButtonType> result = alertC.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    JoyeriaApp.getData().getListapedidos().remove(ver);
+                    JoyeriaApp.getData().setListaVenta(venta);
+                    JoyeriaApp.getStageView().close();
+                }
+            }
+        }
         JoyeriaApp.getData().setListaVenta(venta);
         JoyeriaApp.getStageView().close();
     }

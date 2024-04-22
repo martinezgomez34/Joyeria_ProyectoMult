@@ -7,11 +7,11 @@ public class Pedid0s {
     private String nombrec;
     private int contactoc;
     private String tipoj;
-    private String cantidadj;
+    private int cantidadj;
     private String fechap;
     private String horap;
 
-    public Pedid0s(int id, String nombrec, int contactoc, String tipoj, String cantidadj, String fechap, String horap) {
+    public Pedid0s(int id, String nombrec, int contactoc, String tipoj, int cantidadj, String fechap, String horap) {
         this.id = id;
         this.nombrec = nombrec;
         this.contactoc = contactoc;
@@ -53,11 +53,11 @@ public class Pedid0s {
         this.tipoj = tipoj;
     }
 
-    public String getCantidadj() {
+    public int getCantidadj() {
         return cantidadj;
     }
 
-    public void setCantidadj(String cantidadj) {
+    public void setCantidadj(int cantidadj) {
         this.cantidadj = cantidadj;
     }
 
@@ -82,12 +82,12 @@ public class Pedid0s {
         if (this == o) return true;
         if (!(o instanceof Pedid0s)) return false;
         Pedid0s pedid0s = (Pedid0s) o;
-        return getId() == pedid0s.getId();
+        return getId() == pedid0s.getId() && getCantidadj() == pedid0s.getCantidadj() && Objects.equals(getNombrec(), pedid0s.getNombrec());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(getId(), getNombrec(), getCantidadj());
     }
 }
 

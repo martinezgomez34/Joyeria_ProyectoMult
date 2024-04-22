@@ -64,7 +64,7 @@ public class MpedidosController {
     private TableColumn<Pedid0s,String> nommod;
 
     @FXML
-    private TableColumn<Pedid0s,Integer> tipomod;
+    private TableColumn<Pedid0s,String> tipomod;
 
     @FXML
     void bttnmodificarp(MouseEvent event) {
@@ -77,7 +77,7 @@ public class MpedidosController {
                 String nombre = Anombremp.getText();
                 Integer contacto = Integer.valueOf(Acontactomp.getText());
                 String tipo = Atipodejoyasmp.getText();
-                String cantidad = Acantidaddejoyasmp.getText();
+                Integer cantidad = Integer.valueOf(Acantidaddejoyasmp.getText());
                 String fecha = Afechamp.getText();
                 String hora = Ahoramp.getText();
                 ver.setNombrec(nombre);

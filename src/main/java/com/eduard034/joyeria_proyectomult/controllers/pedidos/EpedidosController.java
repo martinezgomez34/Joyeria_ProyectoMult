@@ -65,8 +65,8 @@ public class EpedidosController {
             if (ver.getId() == ide){
                 Iddelete = false;
                 Alert alertC = new Alert(Alert.AlertType.CONFIRMATION);
-                alertC.setHeaderText("Confirmar cambio de contraseña");
-                alertC.setContentText("¿Estas seguro que quieres cambiar tu contraseña?");
+                alertC.setHeaderText("Eliminar Pedido");
+                alertC.setContentText("¿Estas seguro de eliminar este pedido?");
                 Optional<ButtonType> result = alertC.showAndWait();
                 if (result.isPresent() && result.get() == ButtonType.OK){
                     JoyeriaApp.getData().getListapedidos().remove(ver);

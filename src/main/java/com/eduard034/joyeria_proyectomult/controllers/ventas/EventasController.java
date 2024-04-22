@@ -1,6 +1,7 @@
 package com.eduard034.joyeria_proyectomult.controllers.ventas;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
@@ -54,14 +55,23 @@ public class EventasController {
         boolean busqueda = true;
         for (Venta item: JoyeriaApp.getData().getListaVenta()) {
             if (item.getNombreDCliente().equals(nbusqueda)) {
-                busqueda = false;
-                JoyeriaApp.getData().getListaVenta().remove(item);
-                JoyeriaApp.newStage("ventas.fxml","Ventas");
+                busqueda = false;Alert alertC = new Alert(Alert.AlertType.CONFIRMATION);
+                alertC.setHeaderText("Eliminar Pedido");
+                alertC.setContentText("¿Estas seguro de eliminar este venta?");
+                Optional<ButtonType> result = alertC.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    JoyeriaApp.getData().getListaVenta().remove(item);
+                    Alert alertagregar = new Alert(Alert.AlertType.INFORMATION);
+                    alertagregar.setHeaderText("Se ha eliminado la venta");
+                    alertagregar.setContentText("Haga click en aceptar para continuar");
+                    JoyeriaApp.newStage("ventas.fxml","Ventas");
+                }
             }
         }
         if (busqueda) {
             showAlert(Alert.AlertType.ERROR, "Error", "No se encontró el ID.");
         }
+        JoyeriaApp.newStage("ventas.fxml","Ventas");
     }
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);

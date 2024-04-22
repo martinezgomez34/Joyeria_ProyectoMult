@@ -19,7 +19,8 @@ public class Database {
     }
 
     private int IdbP;
-    private ArrayList<Pedid0s>listapedidos = new ArrayList<>();
+    private ArrayList<Pedid0s> listapedidos = new ArrayList<>();
+
 
     public ArrayList<Gasto> getListaGastos() {
         return listaGastos;
@@ -35,15 +36,17 @@ public class Database {
     }
 
     public boolean setListaJoya(Joya joya) {
-        return  listaJoya.add(joya);
+        return listaJoya.add(joya);
     }
 
     public ArrayList<Venta> getListaVenta() {
         return listaVenta;
     }
+
     public boolean setListaVenta(Venta venta) {
-        return  listaVenta.add(venta);
+        return listaVenta.add(venta);
     }
+
     public int getIdBusqueda() {
         return IdBusqueda;
     }
@@ -55,15 +58,17 @@ public class Database {
     public String getNBusqueda() {
         return NBusqueda;
     }
+
     public void setNBusqueda(String nBusqueda) {
         NBusqueda = nBusqueda;
-    }
-    public ArrayList<Pedid0s> getListapedidos() {
-        return listapedidos;
-    }
-
-    public boolean setListapedidos(Pedid0s pedido){
-        return listapedidos.add(pedido);
-
-    }
 }
+        public ArrayList<Pedid0s> getListapedidos () {
+            return listapedidos;
+        }
+
+        public boolean setListapedidos (Pedid0s pedido){
+            return listapedidos.add(pedido);
+
+        }
+    }
+

@@ -1,10 +1,12 @@
 package com.eduard034.joyeria_proyectomult.controllers.ventas;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
 import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.Pedid0s;
 import com.eduard034.joyeria_proyectomult.models.Venta;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -71,6 +73,24 @@ public class MventasController {
                 String total = Agananciamv.getText();
                 String tipo = Atipodejoyamv.getText();
                 int cantidad = Integer.parseInt(Acantidaddejoyamv.getText());
+                for (Pedid0s ver : JoyeriaApp.getData().getListapedidos()){
+                    if (ver.getNombrec().equals(nombre) && ver.getCantidadj() == cantidad) {
+                        Alert alertC = new Alert(Alert.AlertType.CONFIRMATION);
+                        alertC.setHeaderText("Confirmar venta");
+                        alertC.setContentText("¿Estas seguro que se realizo la venta del pedido?");
+                        Optional<ButtonType> result = alertC.showAndWait();
+                        if (result.isPresent() && result.get() == ButtonType.OK) {
+                            JoyeriaApp.getData().getListapedidos().remove(ver);
+                            item.setNombreDCliente(nombre);
+                            item.setFechaDVenta(fecha);
+                            item.setTotalGanancia(total);
+                            item.setTipoDJoya(tipo);
+                            item.setCantidadDJoya(cantidad);
+                            showAlert(Alert.AlertType.INFORMATION, "Modificado", "Se modifico correctamente.");
+                            JoyeriaApp.newStage("ventas.fxml","Ventas");
+                        }
+                    }
+                }
                 item.setNombreDCliente(nombre);
                 item.setFechaDVenta(fecha);
                 item.setTotalGanancia(total);

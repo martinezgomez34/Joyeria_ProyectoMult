@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
+import com.eduard034.joyeria_proyectomult.models.InicioSesion;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -16,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 import org.controlsfx.control.PlusMinusSlider;
 
 public class LoginController {
-
+    private int pass = 4321;
     @FXML
     private ResourceBundle resources;
 
@@ -41,10 +42,9 @@ public class LoginController {
     @FXML
     private TextField nuevapswd;
 
-    int pass = 4321;
-    public String Ingresarusuario(){
-
-        return ingresarpswd.getText();
+    InicioSesion contrasena = new InicioSesion(pass);
+    public String pasar(){
+        return Integer.toString(contrasena.getPswdpred());
     }
     public String changepass1(){
         return actualpswd.getText();
@@ -52,18 +52,15 @@ public class LoginController {
     public String changepass2(){
         return nuevapswd.getText();
     }
-    public String passwordpred (){
-        return Integer.toString(pass);
-    }
     @FXML
     void bttnchangepswd(MouseEvent event) {
-        if (changepass1().equals(passwordpred())){
+        if (changepass1().equals(pasar())){
             Alert alertC = new Alert(Alert.AlertType.CONFIRMATION);
             alertC.setHeaderText("Confirmar cambio de contraseña");
             alertC.setContentText("¿Estas seguro que quieres cambiar tu contraseña?");
             Optional<ButtonType> result = alertC.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK){
-                pass = Integer.parseInt(changepass2());
+                contrasena.setPswdpred(Integer.parseInt(changepass2()));
                 Alert alertI = new Alert(Alert.AlertType.INFORMATION);
                 alertI.setHeaderText("Contraseña cambiada");
                 alertI.setContentText("Su contraseña se cambio exitosamente");
@@ -79,7 +76,8 @@ public class LoginController {
 
     @FXML
     void bttniniciar(MouseEvent event) {
-        if (Ingresarusuario().equals(passwordpred())){
+        int pswd = Integer.parseInt(ingresarpswd.getText());
+        if (pswd == contrasena.getPswdpred()){
             JoyeriaApp.newStage("home.fxml", "home");
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);

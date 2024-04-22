@@ -23,7 +23,7 @@ public class PedidosController {
     private AnchorPane BActu;
 
     @FXML
-    private TableColumn<Pedid0s, String> MosCant;
+    private TableColumn<Pedid0s, Integer> MosCant;
 
     @FXML
     private TableColumn<Pedid0s, Integer> MosContact;

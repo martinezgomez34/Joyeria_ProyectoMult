@@ -50,7 +50,7 @@ public class ApedidosController {
         String nombre = Inombrecliente.getText();
         Integer contacto = Integer.valueOf(Icontactocliente.getText());
         String tipo = Itiposdejoya.getText();
-        String cantidad = Icantidadjoyas.getText();
+        Integer cantidad = Integer.valueOf((Icantidadjoyas.getText()));
         String fecha = Ifecha.getText();
         String hora = Ihora.getText();
         Pedid0s pedido = new Pedid0s(id,nombre,contacto,tipo,cantidad,fecha,hora);
