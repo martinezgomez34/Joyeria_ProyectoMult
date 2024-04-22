@@ -12,7 +12,7 @@
          </font>
       </Text>
       <TextField fx:id="Inombrecliente" layoutX="597.0" layoutY="241.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese su nombre" style="-fx-background-color: white; -fx-background-radius: 30;" />
-      <Text fill="WHITE" layoutX="597.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese el contacto del cliente:">
+      <Text fill="WHITE" layoutX="597.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese el numero telefonico del cliente:">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -36,12 +36,12 @@
          </font>
       </Text>
       <TextField fx:id="Ifecha" layoutX="597.0" layoutY="615.0" prefHeight="34.0" prefWidth="752.0" promptText="Fecha que se realizo el pedido" style="-fx-background-color: white; -fx-background-radius: 30;" />
-      <Text fill="WHITE" layoutX="600.0" layoutY="682.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese la hora:">
+      <Text fill="WHITE" layoutX="600.0" layoutY="682.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese la fecha limite:">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="Ihora" layoutX="597.0" layoutY="705.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingrese la hora especifica" style="-fx-background-color: white; -fx-background-radius: 30;" />
+      <TextField fx:id="Ihora" layoutX="597.0" layoutY="705.0" prefHeight="34.0" prefWidth="752.0" promptText="Ingresar fecha limite" style="-fx-background-color: white; -fx-background-radius: 30;" />
       <Button fx:id="bttnagregarp" layoutX="870.0" layoutY="806.0" mnemonicParsing="false" onMouseClicked="#bttnagregarp" prefHeight="50.0" prefWidth="178.0" style="-fx-background-color: #2C8A2F; -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 0.2;" text="Agregar" textFill="#f4f4f4">
          <font>
             <Font name="Arial Bold" size="14.0" />

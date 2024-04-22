@@ -1,12 +1,14 @@
 package com.eduard034.joyeria_proyectomult.controllers.joyas;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
 import com.eduard034.joyeria_proyectomult.models.Database;
 import com.eduard034.joyeria_proyectomult.models.Gasto;
 import com.eduard034.joyeria_proyectomult.models.Joya;
+import com.eduard034.joyeria_proyectomult.models.Pedid0s;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -47,17 +49,29 @@ public class EjoyasController {
 
     @FXML
     void bttneliminarv(MouseEvent event) {
-        int ID = Integer.parseInt(Beliminarp.getText());
-        boolean idElimidado = true;
-        for (Joya item: JoyeriaApp.getData().getListaJoya()) {
-            if (item.getIdJoya()==ID) {
-                idElimidado = false;
-                JoyeriaApp.getData().getListaJoya().remove(item);
-                showAlert(Alert.AlertType.INFORMATION, "Eliminado", "Se eliminó correctamente.");
+        int ide = Integer.parseInt(Beliminarp.getText());
+        boolean Iddelete = true;
+        for (Joya ver : JoyeriaApp.getData().getListaJoya()){
+            if (ver.getIdJoya() == ide){
+                Iddelete = false;
+                Alert alertC = new Alert(Alert.AlertType.CONFIRMATION);
+                alertC.setHeaderText("Eliminar Joya");
+                alertC.setContentText("¿Estas seguro de eliminar esta joya?");
+                Optional<ButtonType> result = alertC.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK){
+                    JoyeriaApp.getData().getListaJoya().remove(ver);
+                    Alert alertagregar = new Alert(Alert.AlertType.INFORMATION);
+                    alertagregar.setHeaderText("Se ha eliminado su pedido");
+                    alertagregar.setContentText("Haga click en aceptar para continuar");
+                    alertagregar.showAndWait();
+                }
             }
         }
-        if (idElimidado) {
-            showAlert(Alert.AlertType.ERROR, "Error", "No se encontró el ID.");
+        if (Iddelete){
+            Alert alerterrorp = new Alert(Alert.AlertType.ERROR);
+            alerterrorp.setHeaderText("Error al eliminar");
+            alerterrorp.setContentText("No se encontro el ID");
+            alerterrorp.showAndWait();
         }
     }
     private void showAlert(Alert.AlertType alertType, String title, String message) {

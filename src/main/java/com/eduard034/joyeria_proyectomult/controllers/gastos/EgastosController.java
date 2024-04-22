@@ -1,11 +1,13 @@
 package com.eduard034.joyeria_proyectomult.controllers.gastos;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.Joya;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -51,17 +53,29 @@ public class EgastosController {
 
     @FXML
     void bttneliminarg(MouseEvent event) {
-        int ID = Integer.parseInt(Beliminarp.getText());
-        boolean idElimidado = true;
-        for (Gasto item: JoyeriaApp.getData().getListaGastos()) {
-            if (item.getId()==ID) {
-                idElimidado = false;
-                JoyeriaApp.getData().getListaGastos().remove(item);
-                showAlert(Alert.AlertType.INFORMATION, "Eliminado", "Se eliminó correctamente.");
+        int ide = Integer.parseInt(Beliminarp.getText());
+        boolean Iddelete = true;
+        for (Gasto ver : JoyeriaApp.getData().getListaGastos()){
+            if (ver.getId() == ide){
+                Iddelete = false;
+                Alert alertC = new Alert(Alert.AlertType.CONFIRMATION);
+                alertC.setHeaderText("Eliminar Gasto");
+                alertC.setContentText("¿Estas seguro de eliminar esta gasto?");
+                Optional<ButtonType> result = alertC.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK){
+                    JoyeriaApp.getData().getListaGastos().remove(ver);
+                    Alert alertagregar = new Alert(Alert.AlertType.INFORMATION);
+                    alertagregar.setHeaderText("Se ha eliminado su pedido");
+                    alertagregar.setContentText("Haga click en aceptar para continuar");
+                    alertagregar.showAndWait();
+                }
             }
         }
-        if (idElimidado) {
-            showAlert(Alert.AlertType.ERROR, "Error", "No se encontró el ID.");
+        if (Iddelete){
+            Alert alerterrorp = new Alert(Alert.AlertType.ERROR);
+            alerterrorp.setHeaderText("Error al eliminar");
+            alerterrorp.setContentText("No se encontro el ID");
+            alerterrorp.showAndWait();
         }
     }
 
