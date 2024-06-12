@@ -1,9 +1,12 @@
 package com.eduard034.joyeria_proyectomult.controllers.gastos;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import com.eduard034.joyeria_proyectomult.controllers.menus.GastosController;
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
+import com.eduard034.joyeria_proyectomult.models.DatabaseHatler;
 import com.eduard034.joyeria_proyectomult.models.Gasto;
 import com.eduard034.joyeria_proyectomult.models.Database;
 import javafx.fxml.FXML;
@@ -33,6 +36,7 @@ public class AgastosController {
 
     @FXML
     private TextField ingTipGas;
+    private GastosController gastosController = new GastosController();
 
     @FXML
     void bttnagregarg(MouseEvent event) {
@@ -44,8 +48,23 @@ public class AgastosController {
         Gasto gasto = new Gasto(id,descripcionDGasto,cantidadDGasto,fechaDGasto);
         JoyeriaApp.getData().setListaGastos(gasto);
         JoyeriaApp.getStageView().close();
+        insertGasto(gasto);
     }
+    private void insertGasto(Gasto gasto) {
+        String sql = "INSERT INTO gastos (gastos_id, describcion_g, cantidad_g, fecha_de_gasto) VALUES (?, ?, ?, ?)";
 
+        try (Connection conn = DatabaseHatler.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, gasto.getId());
+            pstmt.setString(2, gasto.getDescripcionDGasto());
+            pstmt.setString(3, gasto.getCantidadDGasto());
+            pstmt.setString(4, gasto.getFechaDGasto());
+            pstmt.executeUpdate();
+            gastosController.loadGastosFromDatabase();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     @FXML
     void bttnsalirag(MouseEvent event) {
         JoyeriaApp.getStageView().close();

@@ -1,10 +1,15 @@
 package com.eduard034.joyeria_proyectomult.controllers.gastos;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
 import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.DatabaseHatler;
 import com.eduard034.joyeria_proyectomult.models.Gasto;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -31,19 +36,38 @@ public class BgastosController {
 
     @FXML
     void bttnbuscarg(MouseEvent event) {
-        Database database = JoyeriaApp.getData();
         int idBusqueda = Integer.parseInt(Bgastosmg.getText());
-        boolean busqueda = true;
-        for (Gasto item: JoyeriaApp.getData().getListaGastos()) {
-            if (item.getId()==idBusqueda) {
-                busqueda = false;
-                database.setIdBusqueda(idBusqueda);
-                JoyeriaApp.newStage("ModificarG.fxml","Modificar Gastos");
-            }
-        }
-        if (busqueda) {
+        Gasto gasto = searchGasto(idBusqueda);
+
+        if (gasto != null) {
+            Database database = JoyeriaApp.getData();
+            database.setIdBusqueda(idBusqueda);
+            JoyeriaApp.newStage("ModificarG.fxml", "Modificar Gastos");
+        } else {
             showAlert(Alert.AlertType.ERROR, "Error", "No se encontró el ID.");
         }
+    }
+    private Gasto searchGasto(int id) {
+        String sql = "SELECT * FROM gastos WHERE gastos_id = ?";
+        Gasto gasto = null;
+
+        try (Connection conn = DatabaseHatler.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                gasto = new Gasto(
+                        rs.getInt("gastos_id"),
+                        rs.getString("describcion_g"),
+                        rs.getString("cantidad_g"),
+                        rs.getString("fecha_de_gasto")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return gasto;
     }
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);

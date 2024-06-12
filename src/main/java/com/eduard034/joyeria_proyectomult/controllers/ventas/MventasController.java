@@ -1,13 +1,15 @@
 package com.eduard034.joyeria_proyectomult.controllers.ventas;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
-import com.eduard034.joyeria_proyectomult.models.Database;
-import com.eduard034.joyeria_proyectomult.models.Pedid0s;
-import com.eduard034.joyeria_proyectomult.models.Venta;
+import com.eduard034.joyeria_proyectomult.models.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -60,49 +62,70 @@ public class MventasController {
     @FXML
     private TableView<Venta> verListasV;
 
+    private String idventa;
     @FXML
     void bttnmodificarv(MouseEvent event) {
-        Database database = JoyeriaApp.getData();
-        String nbusqueda = database.getNBusqueda();
-        boolean busqueda = true;
-        for (Venta item: JoyeriaApp.getData().getListaVenta()) {
-            if (item.getNombreDCliente().equals(nbusqueda)) {
-                busqueda = false;
-                String nombre = Anombremv.getText();
-                String fecha = Afechamv.getText();
-                String total = Agananciamv.getText();
-                String tipo = Atipodejoyamv.getText();
-                int cantidad = Integer.parseInt(Acantidaddejoyamv.getText());
-                for (Pedid0s ver : JoyeriaApp.getData().getListapedidos()){
-                    if (ver.getNombrec().equals(nombre) && ver.getCantidadj() == cantidad) {
-                        Alert alertC = new Alert(Alert.AlertType.CONFIRMATION);
-                        alertC.setHeaderText("Confirmar venta");
-                        alertC.setContentText("¿Estas seguro que se realizo la venta del pedido?");
-                        Optional<ButtonType> result = alertC.showAndWait();
-                        if (result.isPresent() && result.get() == ButtonType.OK) {
-                            JoyeriaApp.getData().getListapedidos().remove(ver);
-                            item.setNombreDCliente(nombre);
-                            item.setFechaDVenta(fecha);
-                            item.setTotalGanancia(total);
-                            item.setTipoDJoya(tipo);
-                            item.setCantidadDJoya(cantidad);
-                            showAlert(Alert.AlertType.INFORMATION, "Modificado", "Se modifico correctamente.");
-                            JoyeriaApp.newStage("ventas.fxml","Ventas");
-                        }
-                    }
-                }
-                item.setNombreDCliente(nombre);
-                item.setFechaDVenta(fecha);
-                item.setTotalGanancia(total);
-                item.setTipoDJoya(tipo);
-                item.setCantidadDJoya(cantidad);
-                showAlert(Alert.AlertType.INFORMATION, "Modificado", "Se modifico correctamente.");
+        String name = Anombremv.getText();
+        String fecha = Afechamv.getText();
+        String total = Agananciamv.getText();
+        String tipo = Atipodejoyamv.getText();
+        int cantidad = Integer.parseInt(Acantidaddejoyamv.getText());
+
+        Venta venta = new Venta(name,fecha,total,tipo,cantidad);
+
+        Alert alertC = new Alert(Alert.AlertType.CONFIRMATION);
+        alertC.setHeaderText("Modificar venta");
+        alertC.setContentText("¿Estás seguro de modificar esta venta?");
+        Optional<ButtonType> result = alertC.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            if (updateV(venta)) {
+                showAlert(Alert.AlertType.INFORMATION, "Modificado", "Se modificó correctamente.");
+                JoyeriaApp.newStage("ventas.fxml", "ventas");
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Error al modificar", "No se pudo modificar el gasto en la base de datos.");
             }
         }
-        if (busqueda) {
-            showAlert(Alert.AlertType.ERROR, "Error", "No se encontró el nombre.");
+    }
+    private boolean updateV(Venta venta) {
+        String sql = "UPDATE venta SET fecha = ?, total_ganancia = ?, tipo_de_joya = ?, cantidad = ? WHERE nombre = ?";
+
+        try (Connection conn = DatabaseHatler.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, venta.getFechaDVenta());
+            pstmt.setString(2, venta.getTotalGanancia());
+            pstmt.setString(3, venta.getTipoDJoya());
+            pstmt.setInt(4, venta.getCantidadDJoya());
+            pstmt.setString(5, venta.getNombreDCliente());
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
         }
-        JoyeriaApp.newStage("ventas.fxml","Ventas");
+    }
+    private Venta searchV(String nombre) {
+        String sql = "SELECT * FROM venta WHERE nombre = ?";
+        Venta venta = null;
+
+        try (Connection conn = DatabaseHatler.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, nombre);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                venta = new Venta(
+                        rs.getString("nombre"),
+                        rs.getString("fecha"),
+                        rs.getString("total_ganancia"),
+                        rs.getString("tipo_de_joya"),
+                        rs.getInt("cantidad")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return venta;
     }
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
@@ -126,7 +149,21 @@ public class MventasController {
         totalColumn.setCellValueFactory(new PropertyValueFactory<>("totalGanancia"));
         tipoColumn.setCellValueFactory(new PropertyValueFactory<>("tipoDJoya"));
         cantidadColumn.setCellValueFactory(new PropertyValueFactory<>("cantidadDJoya"));
-    }
+        Database database = JoyeriaApp.getData();
+        idventa = database.getNBusqueda();
 
+        Venta venta = searchV(idventa);
+
+        if (venta != null) {
+            Anombremv.setText(venta.getNombreDCliente());
+            Afechamv.setText(venta.getFechaDVenta());
+            Agananciamv.setText(venta.getTotalGanancia());
+            Atipodejoyamv.setText(venta.getTipoDJoya());
+            Acantidaddejoyamv.setText(String.valueOf(venta.getCantidadDJoya()));
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Error", "No se encontró el ID.");
+            JoyeriaApp.getStageView().close();
+        }
+    }
 }
 

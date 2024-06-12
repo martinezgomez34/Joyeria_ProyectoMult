@@ -1,10 +1,17 @@
 package com.eduard034.joyeria_proyectomult.controllers.menus;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
+import com.eduard034.joyeria_proyectomult.models.DatabaseHatler;
 import com.eduard034.joyeria_proyectomult.models.Gasto;
 import com.eduard034.joyeria_proyectomult.models.Database;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -47,12 +54,33 @@ public class GastosController {
 
     @FXML
     private TableView<Gasto> verGasto;
+    private ObservableList<Gasto> gastosList = FXCollections.observableArrayList();
     @FXML
     void onClickActualizar(MouseEvent event) {
-        Database date = JoyeriaApp.getData();
-        verGasto.getItems().clear();
-        verGasto.getItems().addAll(date.getListaGastos());
+        loadGastosFromDatabase();
     }
+    public void loadGastosFromDatabase() {
+        String sql = "SELECT * FROM gastos";
+        gastosList.clear();
+
+        try (Connection conn = DatabaseHatler.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Gasto gasto = new Gasto(
+                        rs.getInt("gastos_id"),
+                        rs.getString("describcion_g"),
+                        rs.getString("cantidad_g"),
+                        rs.getString("fecha_de_gasto")
+                );
+                gastosList.add(gasto);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 
     @FXML
     void onClickAgregarGastosButton(MouseEvent event) {
@@ -80,6 +108,7 @@ public class GastosController {
         descripcionColumn.setCellValueFactory(new PropertyValueFactory<>("descripcionDGasto"));
         cantidadColumn.setCellValueFactory(new PropertyValueFactory<>("cantidadDGasto"));
         fechaColumn.setCellValueFactory(new PropertyValueFactory<>("fechaDGasto"));
+        verGasto.setItems(gastosList);
+        loadGastosFromDatabase();
     }
-
 }

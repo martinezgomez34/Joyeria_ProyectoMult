@@ -1,10 +1,16 @@
 package com.eduard034.joyeria_proyectomult.controllers.pedidos;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
 import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.DatabaseHatler;
+import com.eduard034.joyeria_proyectomult.models.Gasto;
 import com.eduard034.joyeria_proyectomult.models.Pedid0s;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -30,24 +36,48 @@ public class Bpedidos {
 
     @FXML
     void bttnbuscarp(MouseEvent event) {
-        Database date = JoyeriaApp.getData();
         int Idbus = Integer.parseInt(Bpedidos.getText());
-        boolean ver = true;
-        for (Pedid0s buscar:JoyeriaApp.getData().getListapedidos()) {
-            if (Idbus == buscar.getId()) {
-                ver = false;
-                date.setIdbP(Idbus);
-                JoyeriaApp.newStage("ModificarP.fxml","Modificar Pedido");
-            }
-        }
-        if (ver) {
-            Alert alerterrorp = new Alert(Alert.AlertType.ERROR);
-            alerterrorp.setHeaderText("Error de busqueda");
-            alerterrorp.setContentText("Ups... no se pudo encontrar su pedido");
-            alerterrorp.showAndWait();
+        Pedid0s pedid0s = searchP(Idbus);
+        if (pedid0s != null) {
+            Database database = JoyeriaApp.getData();
+            database.setIdBusqueda(Idbus);
+            JoyeriaApp.newStage("ModificarP.fxml", "Modificar Pedidos");
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Error", "No se encontró el ID.");
         }
     }
+    private Pedid0s searchP(int id) {
+        String sql = "SELECT * FROM pedidos WHERE pedidos_id = ?";
+        Pedid0s pedid0s = null;
 
+        try (Connection conn = DatabaseHatler.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                pedid0s = new Pedid0s(
+                        rs.getInt("pedidos_id"),
+                        rs.getString("nombre_pedido"),
+                        rs.getInt("contacto_phonum"),
+                        rs.getString("tipo_joya"),
+                        rs.getInt("cantidad"),
+                        rs.getString("fecha"),
+                        rs.getString("hora")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return pedid0s;
+    }
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
     @FXML
     void bttnsalirbp(MouseEvent event) {
         JoyeriaApp.getStageView().close();

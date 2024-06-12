@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Database {
 
-    public int IdBusqueda;
-    public String NBusqueda;
-    public ArrayList<Gasto> listaGastos = new ArrayList<>();
-    public ArrayList<Joya> listaJoya = new ArrayList<>();
-    public ArrayList<Venta> listaVenta = new ArrayList<>();
+    private int IdBusqueda;
+    private String NBusqueda;
+    private ArrayList<Gasto> listaGastos = new ArrayList<>();
+    private ArrayList<Joya> listaJoya = new ArrayList<>();
+    private ArrayList<Venta> listaVenta = new ArrayList<>();
 
     public int getIdbP() {
         return IdbP;

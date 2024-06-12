@@ -1,10 +1,15 @@
 package com.eduard034.joyeria_proyectomult.controllers.joyas;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
 import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.DatabaseHatler;
 import com.eduard034.joyeria_proyectomult.models.Gasto;
 import com.eduard034.joyeria_proyectomult.models.Joya;
 import javafx.fxml.FXML;
@@ -32,19 +37,37 @@ public class BjoyasController {
 
     @FXML
     void bttnbuscarj(MouseEvent event) {
-        Database database = JoyeriaApp.getData();
         int idBusqueda = Integer.parseInt(Bjoyasmj.getText());
-        boolean busqueda = true;
-        for (Joya item: JoyeriaApp.getData().getListaJoya()) {
-            if (item.getIdJoya()==idBusqueda) {
-                busqueda = false;
-                database.setIdBusqueda(idBusqueda);
-                JoyeriaApp.newStage("ModificarJ.fxml","Modificar Gastos");
-            }
-        }
-        if (busqueda) {
+        Joya joya = searchjoya(idBusqueda);
+        if (joya != null) {
+            Database database = JoyeriaApp.getData();
+            database.setIdBusqueda(idBusqueda);
+            JoyeriaApp.newStage("ModificarJ.fxml", "Modificar joyas");
+        } else {
             showAlert(Alert.AlertType.ERROR, "Error", "No se encontró el ID.");
         }
+    }
+    private Joya searchjoya(int id) {
+        String sql = "SELECT * FROM joya WHERE joya_id = ?";
+        Joya joya = null;
+
+        try (Connection conn = DatabaseHatler.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                joya = new Joya(
+                        rs.getInt("joya_id"),
+                        rs.getString("nombre_joya"),
+                        rs.getString("cantidad_joya"),
+                        rs.getString("description")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return joya;
     }
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);

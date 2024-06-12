@@ -1,11 +1,19 @@
 package com.eduard034.joyeria_proyectomult.controllers.menus;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
 import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.DatabaseHatler;
+import com.eduard034.joyeria_proyectomult.models.Gasto;
 import com.eduard034.joyeria_proyectomult.models.Venta;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -48,6 +56,7 @@ public class VentasController {
 
     @FXML
     private TableView<Venta> verLista;
+    private ObservableList<Venta> ventasList = FXCollections.observableArrayList();
 
     @FXML
     void onClickAgregarVentasButton(MouseEvent event) {
@@ -71,9 +80,29 @@ public class VentasController {
 
     @FXML
     void onClickVerLista(MouseEvent event) {
-        Database date = JoyeriaApp.getData();
-        verLista.getItems().clear();
-        verLista.getItems().addAll(date.getListaVenta());
+        loadVFromDatabase();
+    }
+    public void loadVFromDatabase() {
+        String sql = "SELECT * FROM venta";
+        ventasList.clear();
+
+        try (Connection conn = DatabaseHatler.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Venta venta = new Venta(
+                        rs.getString("nombre"),
+                        rs.getString("fecha"),
+                        rs.getString("total_ganancia"),
+                        rs.getString("tipo_de_joya"),
+                        rs.getInt("cantidad")
+                );
+                ventasList.add(venta);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML
@@ -83,6 +112,7 @@ public class VentasController {
         totalColumn.setCellValueFactory(new PropertyValueFactory<>("totalGanancia"));
         tipoColumn.setCellValueFactory(new PropertyValueFactory<>("tipoDJoya"));
         cantidadColumn.setCellValueFactory(new PropertyValueFactory<>("cantidadDJoya"));
+        verLista.setItems(ventasList);
+        loadVFromDatabase();
     }
-
 }

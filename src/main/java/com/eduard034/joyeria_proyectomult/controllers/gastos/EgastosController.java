@@ -1,13 +1,20 @@
 package com.eduard034.joyeria_proyectomult.controllers.gastos;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import com.eduard034.joyeria_proyectomult.controllers.menus.GastosController;
 import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.DatabaseHatler;
 import com.eduard034.joyeria_proyectomult.models.Joya;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -50,34 +57,71 @@ public class EgastosController {
 
     @FXML
     private TableView<Gasto> verColumna;
+    private ObservableList<Gasto> gastosList = FXCollections.observableArrayList();
+    private GastosController gastosController = new GastosController();
 
     @FXML
     void bttneliminarg(MouseEvent event) {
         int ide = Integer.parseInt(Beliminarp.getText());
-        boolean Iddelete = true;
-        for (Gasto ver : JoyeriaApp.getData().getListaGastos()){
-            if (ver.getId() == ide){
-                Iddelete = false;
-                Alert alertC = new Alert(Alert.AlertType.CONFIRMATION);
-                alertC.setHeaderText("Eliminar Gasto");
-                alertC.setContentText("¿Estas seguro de eliminar esta gasto?");
-                Optional<ButtonType> result = alertC.showAndWait();
-                if (result.isPresent() && result.get() == ButtonType.OK){
-                    JoyeriaApp.getData().getListaGastos().remove(ver);
+        Gasto gasto = searchGasto(ide);
+
+        if (gasto != null) {
+            Alert alertC = new Alert(Alert.AlertType.CONFIRMATION);
+            alertC.setHeaderText("Eliminar Gasto");
+            alertC.setContentText("¿Estás seguro de eliminar este gasto?");
+            Optional<ButtonType> result = alertC.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                if (deleteGasto(ide)) {
                     Alert alertagregar = new Alert(Alert.AlertType.INFORMATION);
-                    alertagregar.setHeaderText("Se ha eliminado su pedido");
+                    alertagregar.setHeaderText("Se ha eliminado el gasto");
                     alertagregar.setContentText("Haga click en aceptar para continuar");
                     alertagregar.showAndWait();
+                    JoyeriaApp.newStage("gastos.fxml", "Gastos");
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Error al eliminar", "No se pudo eliminar el gasto de la base de datos.");
                 }
             }
-        }
-        if (Iddelete){
-            Alert alerterrorp = new Alert(Alert.AlertType.ERROR);
-            alerterrorp.setHeaderText("Error al eliminar");
-            alerterrorp.setContentText("No se encontro el ID");
-            alerterrorp.showAndWait();
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Error al eliminar", "No se encontró el ID.");
         }
     }
+    private Gasto searchGasto(int id) {
+        String sql = "SELECT * FROM gastos WHERE gastos_id = ?";
+        Gasto gasto = null;
+
+        try (Connection conn = DatabaseHatler.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                gasto = new Gasto(
+                        rs.getInt("gastos_id"),
+                        rs.getString("describcion_g"),
+                        rs.getString("cantidad_g"),
+                        rs.getString("fecha_de_gasto")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return gasto;
+    }
+    private boolean deleteGasto(int id) {
+        String sql = "DELETE FROM gastos WHERE gastos_id = ?";
+
+        try (Connection conn = DatabaseHatler.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
 
     @FXML
     void bttnsalireg(MouseEvent event) {
@@ -93,9 +137,7 @@ public class EgastosController {
     }
     @FXML
     void verListaGastos(MouseEvent event) {
-        Database date = JoyeriaApp.getData();
-        verColumna.getItems().clear();
-        verColumna.getItems().addAll(date.getListaGastos());
+        gastosController.loadGastosFromDatabase();
     }
 
     @FXML
@@ -104,6 +146,7 @@ public class EgastosController {
         descripcionColumnE.setCellValueFactory(new PropertyValueFactory<>("descripcionDGasto"));
         cantidadColumnE.setCellValueFactory(new PropertyValueFactory<>("cantidadDGasto"));
         fechaColumE.setCellValueFactory(new PropertyValueFactory<>("fechaDGasto"));
+        verColumna.setItems(gastosList);
+        gastosController.loadGastosFromDatabase();
     }
-
 }

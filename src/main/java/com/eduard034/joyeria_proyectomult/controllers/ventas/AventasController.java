@@ -1,15 +1,15 @@
 package com.eduard034.joyeria_proyectomult.controllers.ventas;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
-import com.eduard034.joyeria_proyectomult.models.Database;
-import com.eduard034.joyeria_proyectomult.models.Gasto;
-import com.eduard034.joyeria_proyectomult.models.Pedid0s;
-import com.eduard034.joyeria_proyectomult.models.Venta;
+import com.eduard034.joyeria_proyectomult.models.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -71,6 +71,23 @@ public class AventasController {
         }
         JoyeriaApp.getData().setListaVenta(venta);
         JoyeriaApp.getStageView().close();
+        insertV(venta);
+    }
+    private void insertV(Venta venta) {
+        String sql = "INSERT INTO venta (nombre, fecha, total_ganancia, tipo_de_joya, cantidad) VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection conn = DatabaseHatler.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, venta.getNombreDCliente());
+            pstmt.setString(2, venta.getFechaDVenta());
+            pstmt.setString(3, venta.getTotalGanancia());
+            pstmt.setString(4, venta.getTipoDJoya());
+            pstmt.setInt(5, venta.getCantidadDJoya());
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML

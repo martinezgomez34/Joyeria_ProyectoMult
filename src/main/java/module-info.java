@@ -6,6 +6,7 @@ module com.eduard034.joyeria_proyectomult {
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens com.eduard034.joyeria_proyectomult.models to javafx.base;
     opens com.eduard034.joyeria_proyectomult to javafx.fxml;

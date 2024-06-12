@@ -1,11 +1,19 @@
 package com.eduard034.joyeria_proyectomult.controllers.menus;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
 import com.eduard034.joyeria_proyectomult.models.Database;
+import com.eduard034.joyeria_proyectomult.models.DatabaseHatler;
+import com.eduard034.joyeria_proyectomult.models.Gasto;
 import com.eduard034.joyeria_proyectomult.models.Joya;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -45,6 +53,7 @@ public class JoyasController {
 
     @FXML
     private TableColumn<Joya, String> nombreColumnJ;
+    private ObservableList<Joya> joyaList = FXCollections.observableArrayList();
 
 
     @FXML
@@ -66,6 +75,27 @@ public class JoyasController {
     void onClickModificarJoyasButton(MouseEvent event) {
         JoyeriaApp.newStage("BuscarJ.fxml","Buscar joyas");
     }
+    public void loadGastosFromDatabase() {
+        String sql = "SELECT * FROM joya";
+        joyaList.clear();
+
+        try (Connection conn = DatabaseHatler.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Joya joya = new Joya(
+                        rs.getInt("joya_id"),
+                        rs.getString("nombre_joya"),
+                        rs.getString("cantidad_joya"),
+                        rs.getString("description")
+                );
+                joyaList.add(joya);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     @FXML
     void onClickVerLIstaJ(MouseEvent event) {
         Database date = JoyeriaApp.getData();
@@ -79,6 +109,7 @@ public class JoyasController {
         nombreColumnJ.setCellValueFactory(new PropertyValueFactory<>("nombreJoya"));
         cantidadColumnJ.setCellValueFactory(new PropertyValueFactory<>("cantidadDJoya"));
         descripcionColumnJ.setCellValueFactory(new PropertyValueFactory<>("descripcionDJoya"));
+        listaJoyas.setItems(joyaList);
+        loadGastosFromDatabase();
     }
-
 }

@@ -1,10 +1,15 @@
 package com.eduard034.joyeria_proyectomult.controllers.pedidos;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.eduard034.joyeria_proyectomult.JoyeriaApp;
+import com.eduard034.joyeria_proyectomult.models.DatabaseHatler;
+import com.eduard034.joyeria_proyectomult.models.Gasto;
 import com.eduard034.joyeria_proyectomult.models.Pedid0s;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -48,16 +53,34 @@ public class ApedidosController {
         Random generar = new Random();
         int id = generar.nextInt(1000);
         String nombre = Inombrecliente.getText();
-        Integer contacto = Integer.valueOf(Icontactocliente.getText());
+        Integer contacto = Integer.parseInt(Icontactocliente.getText());
         String tipo = Itiposdejoya.getText();
-        Integer cantidad = Integer.valueOf((Icantidadjoyas.getText()));
+        Integer cantidad = Integer.parseInt((Icantidadjoyas.getText()));
         String fecha = Ifecha.getText();
         String hora = Ihora.getText();
         Pedid0s pedido = new Pedid0s(id,nombre,contacto,tipo,cantidad,fecha,hora);
         JoyeriaApp.getData().setListapedidos(pedido);
         JoyeriaApp.getStageView().close();
+        insertP(pedido);
     }
+    private void insertP(Pedid0s pedid0s) {
+        String sql = "INSERT INTO pedidos (pedidos_id, nombre_pedido, contacto_phonum, tipo_joya, cantidad, fecha, hora) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
+        try (Connection conn = DatabaseHatler.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, pedid0s.getId());
+            pstmt.setString(2, pedid0s.getNombrec());
+            pstmt.setInt(3, pedid0s.getContactoc());
+            pstmt.setString(4, pedid0s.getTipoj());
+            pstmt.setInt(5, pedid0s.getCantidadj());
+            pstmt.setString(6, pedid0s.getFechap());
+            pstmt.setString(7, pedid0s.getHorap());
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     @FXML
     void bttnsalirap(MouseEvent event) {
         JoyeriaApp.getStageView().close();
